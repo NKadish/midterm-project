@@ -23,5 +23,3 @@ module.exports = (db) => {
   });
   return router;
 };
-
-//This is a comment
