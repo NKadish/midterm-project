@@ -5,6 +5,7 @@
 
 # Menu Page
 - GET /menu (GET request for menu page)
+- GET /menu/:id (GET request for specific item from menu)
 - POST /menu (POST requests to add items to cart from menu)
 
 # Checkout Page
@@ -14,4 +15,4 @@
 
 # Orders Page
 - GET /orders (GET request for orders page)
-- GET /orders:id (GET Request for specific order)
+- GET /orders/:id (GET Request for specific order)
