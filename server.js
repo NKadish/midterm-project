@@ -51,7 +51,7 @@ app.use("/checkout", checkoutRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  res.render("checkout");
+  res.render("main_page");
 });
 
 app.listen(PORT, () => {
