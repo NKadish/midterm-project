@@ -88,3 +88,41 @@ const showAllOrders =  function(user) {
     );
 };
 exports.showAllOrders = showAllOrders;
+
+// gets the total cost of an order, user is there to make sure it only does it for the user that's logged in
+const totalCostOfOrder =  function(order, user) {
+  const queryString = `SELECT sum(menu_items.cost)
+                       FROM orders
+                       JOIN carts ON orders_id = orders.id
+                       JOIN menu_items ON carts.menu_id = menu_items.id
+                       WHERE orders.id = $1 AND user_id = $2;
+                      `;
+
+  const queryParams = [order.id, user.id];
+
+  return pool.query(queryString, queryParams)
+    .then(res => {
+      return res.rows[0];
+      }
+    );
+};
+exports.totalCostOfOrder = totalCostOfOrder;
+
+// gets the highest time to make of the items in an order
+const longestMakeTimeFromOrder =  function(order) {
+  const queryString = `SELECT max(menu_items.time_to_make)
+                       FROM orders
+                       JOIN carts ON orders_id = orders.id
+                       JOIN menu_items ON carts.menu_id = menu_items.id
+                       WHERE orders.id = $1;
+                      `;
+
+  const queryParams = [order.id];
+
+  return pool.query(queryString, queryParams)
+    .then(res => {
+      return res.rows[0];
+      }
+    );
+};
+exports.longestMakeTimeFromOrder = longestMakeTimeFromOrder;
