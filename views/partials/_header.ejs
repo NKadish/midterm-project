@@ -1,0 +1,23 @@
+<header>
+  <nav class="navbar navbar-expand-md navbar-dark bg-info">
+    <a class="navbar-brand" href="/">RESTO</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse-side" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <!-- <ul class="dropdown-menu"> -->
+          <li><a class="nav-item nav-link" href="/menu">Menu</a></li>
+          <li><a class="nav-item nav-link" href="/orders">My Orders</a></li>
+        <!-- </ul> -->
+      </div>
+    </div>
+      <!-- If logged in checkout and logout button otherwise login/register -->
+      <a class="nav-item nav-link" href="/checkout">Checkout</a>
+      <form method="GET" action='/users/login'> <button type="submit" class="btn btn-info"> Login </button></form>
+      <form method="GET" action='/users/register'> <button type="submit" class="btn btn-info"> Register </button></form>
+      <form method="GET" action='/users/logout'> <button type="submit" class="btn btn-info"> Logout </button></form>
+
+
+  </nav>
+</header>
