@@ -26,7 +26,7 @@ module.exports = (db) => {
   ///////////// GET request for Login page
   router.get("/login", (req, res) => {
     res.render("login");
-  })
+  });
 
   ///////////// POST request to login
   router.post("/login", (req, res) => {
@@ -36,7 +36,7 @@ module.exports = (db) => {
     WHERE email = $1;
     `, [inputEmail])
     .then(result => {
-      if (!result.rows) {
+      if (result.rows.email = inputEmail) {
         const { id, name, email } = result.rows[0];
         req.session.id = id;
         res.redirect("/");
@@ -44,7 +44,13 @@ module.exports = (db) => {
         res.send("404, WRONG EMAIL");
       }
     });
-  })
+  });
+
+  /////////////// POST request to logout (NEEDS IMPLEMENTATION ON PAGE)
+  router.post("/logout", (req, res) => {
+    req.session = null;
+    res.redirect("/");
+  });
 
 
 
