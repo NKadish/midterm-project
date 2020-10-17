@@ -21,5 +21,12 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
+
+  router.get("/login", (req, res) => {
+    res.render("login");
+  })
+
+
+
   return router;
 };
