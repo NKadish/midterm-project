@@ -64,21 +64,21 @@ const updateUser =  function(userUpdate) {
     queryString += `UPDATE users
                     SET name = $2
                     WHERE id = $1;
-                   `
+                   `;
   };
 
   if (userUpdate.email) {
     queryString += `UPDATE users
                     SET email = $3
                     WHERE id = $1;
-                   `
+                   `;
   };
 
   if (userUpdate.phone_number) {
     queryString += `UPDATE users
                     SET phone_number = $4
                     WHERE id = $1;
-                   `
+                   `;
   };
 
   return pool.query(queryString, queryParams)
@@ -164,3 +164,71 @@ const showCart = function(order) {
     );
 };
 exports.showCart = showCart;
+
+// create a new order
+const newOrder =  function(user) {
+  const queryString = `INSERT INTO orders(user_id)
+                       VALUES ($1)
+                       RETURNING *;
+                      `;
+
+  const queryParams = [user.id];
+
+  return pool.query(queryString, queryParams)
+    .then(res => {
+      return res.rows[0];
+      }
+    );
+};
+exports.newOrder = newOrder;
+
+// when the user goes to add an item to their cart
+const addItemToCart =  function( order, menu, quantity) {
+  const queryString = `INSERT INTO carts(menu_id, orders_id, quantity)
+                       VALUES ($1, $2, $3)
+                       RETURNING *;
+                      `;
+
+  const queryParams = [menu.id, order.id, quantity];
+
+  return pool.query(queryString, queryParams)
+    .then(res => {
+      return res.rows[0];
+      }
+    );
+};
+exports.addItemToCart = addItemToCart;
+
+// updates orders on checkout, adding the timestamp that the order was placed at
+const updateOrderOnCheckout =  function(order) {
+  const queryString = `UPDATE order
+                       SET placed_at = GETDATE()
+                       WHERE id = $1;
+                      `;
+
+  const queryParams = [order.id];
+
+  return pool.query(queryString, queryParams)
+    .then(res => {
+      return res.rows[0];
+      }
+    );
+};
+exports.updateOrderOnCheckout = updateOrderOnCheckout;
+
+// updates orders on pickup, adding the timestamp that the order was picked up at and setting status to f
+const updateOrderOnPickup =  function(order) {
+  const queryString = `UPDATE order
+                       SET picked_up_at = GETDATE(), status = false
+                       WHERE id = $1;
+                      `;
+
+  const queryParams = [order.id];
+
+  return pool.query(queryString, queryParams)
+    .then(res => {
+      return res.rows[0];
+      }
+    );
+};
+exports.updateOrderOnPickup = updateOrderOnPickup;
