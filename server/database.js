@@ -24,6 +24,25 @@ const register =  function(user) {
 };
 exports.register = register;
 
+// gets a user by their email address
+const getUserWithEmail = function(email) {
+  const queryString = `SELECT * FROM users
+                       WHERE email = $1;
+                      `;
+
+  const queryParams = [email];
+
+  return pool.query(queryString, queryParams)
+    .then(res => {
+      if (res.rows[0].email === null) {
+        return null;
+      } else {
+        return res.rows[0];
+      }
+    });
+};
+exports.getUserWithEmail = getUserWithEmail;
+
 // get every item on the menu
 const getAllMenu =  function() {
   const queryString = `SELECT name, description, cost, picture_url
@@ -126,3 +145,22 @@ const longestMakeTimeFromOrder =  function(order) {
     );
 };
 exports.longestMakeTimeFromOrder = longestMakeTimeFromOrder;
+
+// gets all the items in the current cart and their prices
+const showCart = function(order) {
+  const queryString = `SELECT menu_items.name, menu_items.cost
+                       FROM orders
+                       JOIN carts ON orders_id = orders.id
+                       JOIN menu_items ON carts.menu_id = menu_items.id
+                       WHERE orders.id = $1;
+                      `;
+
+  const queryParams = [order.id];
+
+  return pool.query(queryString, queryParams)
+    .then(res => {
+      return res.rows[0];
+      }
+    );
+};
+exports.showCart = showCart;
