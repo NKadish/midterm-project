@@ -12,11 +12,18 @@
         <!-- </ul> -->
       </div>
     </div>
-      <!-- If logged in checkout and logout button otherwise login/register -->
-      <a class="nav-item nav-link" href="/checkout">Checkout</a>
-      <form method="GET" action='/users/login'> <button type="submit" class="btn btn-info"> Login </button></form>
-      <form method="GET" action='/users/register'> <button type="submit" class="btn btn-info"> Register </button></form>
-      <form method="GET" action='/users/logout'> <button type="submit" class="btn btn-info"> Logout </button></form>
+      <!-- <% if (1===1) {%>-->
+      <div>
+        <a class="nav-item nav-link" href="/checkout">Checkout</a>
+        <form method="GET" action='/users/logout'> <button type="submit" class="btn btn-info"> Logout </button></form>
+      </div>
+      <!-- <%} else {%> -->
+      <div>
+        <form method="GET" action='/users/login'> <button type="submit" class="btn btn-info"> Login </button></form>
+        <form method="GET" action='/users/register'> <button type="submit" class="btn btn-info"> Register </button></form>
+      </div>
+      <!-- <% } %> -->
+
 
 
   </nav>
