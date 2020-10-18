@@ -18,10 +18,10 @@
     </ul>
      <% if (1==2) {%>
       <form method="GET" action='/users/checkout'> <button type="submit" class="btn btn-info">Cart &#128722; </button></form>
-      <form method="GET" action='/users/logout'> <button type="submit" class="btn btn-info"> Logout
+      <form method="POST" action='/logout'> <button type="submit" class="btn btn-info"> Logout
       </button></form>
     <%} else {%>
-      <form method="GET" action='/users/login'> <button type="submit" class="btn btn-info"> Login
+      <form method="GET" action='/login'> <button type="submit" class="btn btn-info"> Login
       </button></form>
       <form method="GET" action='/register'> <button type="submit" class="btn btn-info"> Register </button></form>
     <% } %>
