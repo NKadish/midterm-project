@@ -9,12 +9,12 @@ const pool = new Pool({
 
 // add a user to the database
 const register =  function(user) {
-  const queryString = `INSERT INTO users(name, email, phone_number)
+  const queryString = `INSERT INTO users(name, email, phone_number, password)
                        VALUES ($1, $2, $3)
                        RETURNING *;
                       `;
 
-  const queryParams = [user.name, user.email, user.phone_number];
+  const queryParams = [user.name, user.email, user.phone_number, user.password];
 
   return pool.query(queryString, queryParams)
     .then(result => {
@@ -58,7 +58,7 @@ exports.getAllMenu = getAllMenu;
 const updateUser =  function(userUpdate) {
   let queryString = '';
 
-  const queryParams = [userUpdate.id, userUpdate.name, userUpdate.email, userUpdate.phone_number];
+  const queryParams = [userUpdate.id, userUpdate.name, userUpdate.email, userUpdate.phone_number, userUpdate.password];
 
   if (userUpdate.name) {
     queryString += `UPDATE users
@@ -77,6 +77,13 @@ const updateUser =  function(userUpdate) {
   if (userUpdate.phone_number) {
     queryString += `UPDATE users
                     SET phone_number = $4
+                    WHERE id = $1;
+                   `;
+  };
+
+  if (userUpdate.password) {
+    queryString += `UPDATE users
+                    SET password = $5
                     WHERE id = $1;
                    `;
   };

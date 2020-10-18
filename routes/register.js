@@ -11,7 +11,7 @@ module.exports = (db) => {
   /*
   // POST request to register a new user
   router.post("/", (req, res) => {
-    const {name, email, phone_number} = req.body;
+    const {name, email, phone_number, password} = req.body;
     db.query(`
     INSERT NEW USER TO USER DATABASE <-----
     RETURNING *;
