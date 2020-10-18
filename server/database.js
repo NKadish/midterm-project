@@ -14,7 +14,7 @@ const getAllUsers =  function() {
 
   return pool.query(queryString)
     .then(result => {
-      return result.rows[0];
+      return result.rows;
       }
     );
 };
