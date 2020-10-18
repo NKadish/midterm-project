@@ -7,6 +7,19 @@ const pool = new Pool({
   database: 'midterm'
 });
 
+// get all users
+const getAllUsers =  function() {
+  const queryString = `SELECT * FROM users;
+                      `;
+
+  return pool.query(queryString)
+    .then(result => {
+      return result.rows[0];
+      }
+    );
+};
+exports.getAllUsers = getAllUsers;
+
 // add a user to the database
 const register =  function(user) {
   const queryString = `INSERT INTO users(name, email, phone_number, password)
