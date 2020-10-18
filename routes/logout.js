@@ -5,7 +5,7 @@ const router  = express.Router();
 module.exports = (db) => {
 
   /////////////// POST request to logout (NEEDS IMPLEMENTATION ON PAGE)
-  router.post("/logout", (req, res) => {
+  router.post("/", (req, res) => {
     req.session = null;
     res.redirect("/");
   });

@@ -66,7 +66,7 @@ app.use("/login", loginRoutes(db));
 // /logout/endpoints
 const logoutRouter = express.Router();
 logoutRoutes(logoutRouter, database);
-app.use("/logiout", logoutRoutes(db));
+app.use("/logout", logoutRoutes(db));
 
 // /menu/endpoints
 const menuRouter = express.Router();
