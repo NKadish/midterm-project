@@ -29,9 +29,9 @@ const register =  function(user) {
 
   const queryParams = [user.name, user.email, user.phone_number, user.password];
 
-  return pool.query(queryString)
+  return pool.query(queryString, queryParams)
     .then(result => {
-      return result.rows;
+      return result.rows[0];
       }
     );
 };
