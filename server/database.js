@@ -34,7 +34,7 @@ const getUserWithEmail = function(email) {
 
   return pool.query(queryString, queryParams)
     .then(result => {
-      if (result.rows[0].email === null) {
+      if (result.rows === null) {
         return null;
       } else {
         return result.rows[0];

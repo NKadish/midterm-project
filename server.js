@@ -53,27 +53,27 @@ const database = require('./server/database');
 // /users/endpoint
 const usersRouter = express.Router();
 usersRoutes(usersRouter, database);
-app.use("/users", usersRouter);
+app.use("/users", usersRoutes(db));
 
 // /menu/endpoints
 const menuRouter = express.Router();
 menuRoutes(menuRouter, database);
-app.use("/menu", menuRouter);
+app.use("/menu", menuRoutes(db));
 
 // /register/endpoints
 const registerRouter = express.Router();
 registerRoutes(registerRouter, database);
-app.use("/register", registerRouter);
+app.use("/register", registerRoutes(db));
 
 // /orders/endpoints
 const ordersRouter = express.Router();
 ordersRoutes(ordersRouter, database);
-app.use("/orders", ordersRouter);
+app.use("/orders", ordersRoutes(db));
 
 // /checkout/endpoints
 const checkoutRouter = express.Router();
 checkoutRoutes(checkoutRouter, database);
-app.use("/checkout", checkoutRouter);
+app.use("/checkout", checkoutRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
 

@@ -6,6 +6,7 @@
  */
 
 const express = require('express');
+const { getUserWithEmail } = require('../server/database');
 const router  = express.Router();
 
 module.exports = (db) => {
@@ -31,19 +32,34 @@ module.exports = (db) => {
   ///////////// POST request to login
   router.post("/login", (req, res) => {
     const { inputEmail } = req.body;
-    db.query(`
-    SELECT id, name, email FROM users
-    WHERE email = $1;
-    `, [inputEmail])
-    .then(result => {
-      if (result.rows.email === inputEmail) {
-        const { id, name, email } = result.rows[0];
-        req.session.id = id;
+    return getUserWithEmail(inputEmail)
+    .then(user => {
+      if (user) {
+        req.session.id = user.id;
         res.redirect("/");
       } else {
         res.send("404, WRONG EMAIL");
       }
-    });
+    })
+
+
+
+
+
+
+    // db.query(`
+    // SELECT id, name, email FROM users
+    // WHERE email = $1;
+    // `, [inputEmail])
+    // .then(result => {
+    //   if (result.rows.email === inputEmail) {
+    //     const { id, name, email } = result.rows[0];
+    //     req.session.id = id;
+    //     res.redirect("/");
+    //   } else {
+    //     res.send("404, WRONG EMAIL");
+    //   }
+    // });
   });
 
   /////////////// POST request to logout (NEEDS IMPLEMENTATION ON PAGE)
