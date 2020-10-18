@@ -16,8 +16,8 @@
         <a class="nav-link" href="/orders">Order</a>
       </li>
     </ul>
-     <% if (1==2) {%>
-      <form method="GET" action='/users/checkout'> <button type="submit" class="btn btn-info">Cart &#128722; </button></form>
+     <% if (user) {%>
+      <form method="GET" action='/checkout'> <button type="submit" class="btn btn-info">Cart &#128722; </button></form>
       <form method="POST" action='/logout'> <button type="submit" class="btn btn-info"> Logout
       </button></form>
     <%} else {%>

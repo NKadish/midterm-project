@@ -5,7 +5,8 @@ const router  = express.Router();
 module.exports = (db) => {
 
   router.get("/", (req, res) => {
-    res.render("orders");
+    const templateVars = { user : req.session.id };
+    res.render("orders", templateVars);
   });
 
   router.get("/", (req, res) => {
