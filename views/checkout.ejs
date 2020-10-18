@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('partials/_head') %>
+    <title>Checkout</title>
+  </head>
+
+  <header>
+    <%- include('partials/_header') %>
+  </header>
+
+
+  <body>
+    <h1>Checkout</h1>
+    <div>
+      <section class="cart-items">
+        cart query items
+      </section>
+    </div>
+    <div>
+      <p>Estimated wait time: query</p>
+      <p>TOTAL: query</p>
+    </div>
+    <div>
+      <form method="GET" action='/users/orders'>
+        <button type="submit" class="btn btn-info"> Place Order </button>
+      </form>
+    </div>
+
+  </body>
+</html>
