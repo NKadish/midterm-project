@@ -16,6 +16,13 @@ const dbParams = require('./lib/db.js');
 const db = new Pool(dbParams);
 db.connect();
 
+// Cookies
+const cookieSession = require("cookie-session");
+app.use(cookieSession({
+  name: 'session',
+  keys: ['key1', 'key2']
+}));
+
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
@@ -35,6 +42,7 @@ app.use(express.static("public"));
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
 const menuRoutes = require("./routes/menu");
+const registerRoutes = require("./routes/register");
 const ordersRoutes = require("./routes/orders");
 const checkoutRoutes = require("./routes/checkout");
 
@@ -42,6 +50,7 @@ const checkoutRoutes = require("./routes/checkout");
 // Note: Feel free to replace the example routes below with your own
 app.use("/users", usersRoutes(db));
 app.use("/menu", menuRoutes(db));
+app.use("/register", registerRoutes(db));
 app.use("/orders", ordersRoutes(db));
 app.use("/checkout", checkoutRoutes(db));
 // Note: mount other resources here, using the same pattern above
