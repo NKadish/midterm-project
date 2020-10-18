@@ -9,6 +9,7 @@ const bodyParser = require("body-parser");
 const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
+const bcrypt     = require('bcrypt');
 
 // PG database client/connection setup
 const { Pool } = require('pg');
@@ -81,7 +82,7 @@ app.use("/checkout", checkoutRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  res.render("main_page");
+  res.render("register");
 });
 
 app.listen(PORT, () => {

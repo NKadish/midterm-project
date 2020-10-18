@@ -1,4 +1,5 @@
 const { Pool } = require('pg');
+const bcrypt = require('bcrypt');
 
 const pool = new Pool({
   user: 'labber',
@@ -239,3 +240,8 @@ const updateOrderOnPickup =  function(order) {
     );
 };
 exports.updateOrderOnPickup = updateOrderOnPickup;
+
+const hashPassword = function(password) {
+  return bcrypt.hashSync(password, 10);
+};
+exports.hashPassword = hashPassword;

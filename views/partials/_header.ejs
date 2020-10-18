@@ -16,14 +16,14 @@
         <a class="nav-link" href="/users/order">Order</a>
       </li>
     </ul>
-     <!-- <% if (1===1) {%>-->
+     <% if (1==2) {%>
       <form method="GET" action='/users/checkout'> <button type="submit" class="btn btn-info">Cart &#128722; </button></form>
       <form method="GET" action='/users/logout'> <button type="submit" class="btn btn-info"> Logout
       </button></form>
-    <!-- <%} else {%> -->
+    <%} else {%>
       <form method="GET" action='/users/login'> <button type="submit" class="btn btn-info"> Login
       </button></form>
-      <form method="GET" action='/users/register'> <button type="submit" class="btn btn-info"> Register </button></form>
-    <!-- <% } %> -->
+      <form method="GET" action='/register'> <button type="submit" class="btn btn-info"> Register </button></form>
+    <% } %>
   </div>
 </nav>
