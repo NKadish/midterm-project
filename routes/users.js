@@ -18,33 +18,5 @@ module.exports = (db) => {
     })
   });
 
-  ///////////// GET request for Login page
-  router.get("/login", (req, res) => {
-    res.render("login");
-  });
-
-  ///////////// POST request to login
-  router.post("/login", (req, res) => {
-    const { email, password } = req.body;
-    return getUserWithEmail(email)
-    .then(user => {
-      if (user.password === password) {
-        req.session.id = user.id;
-        res.redirect("/");
-      } else {
-        res.send("404, COULD NOT LOG IN");
-      }
-    })
-  });
-
-  /////////////// POST request to logout (NEEDS IMPLEMENTATION ON PAGE)
-  router.post("/logout", (req, res) => {
-    req.session = null;
-    res.redirect("/");
-  });
-
-
-
-
   return router;
 };
