@@ -36,7 +36,7 @@ module.exports = (db) => {
     WHERE email = $1;
     `, [inputEmail])
     .then(result => {
-      if (result.rows.email = inputEmail) {
+      if (result.rows.email === inputEmail) {
         const { id, name, email } = result.rows[0];
         req.session.id = id;
         res.redirect("/");
