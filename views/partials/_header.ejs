@@ -1,30 +1,29 @@
-<header>
-  <nav class="navbar navbar-expand-md navbar-dark bg-info">
-    <a class="navbar-brand" href="/">RESTO</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse-side" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <!-- <ul class="dropdown-menu"> -->
-          <li><a class="nav-item nav-link" href="/menu">Menu</a></li>
-          <li><a class="nav-item nav-link" href="/orders">My Orders</a></li>
-        <!-- </ul> -->
-      </div>
-    </div>
-      <!-- <% if (1===1) {%>-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
 
-        <form method="GET" action='/users/checkout'> <button type="submit" class="btn btn-info">Cart &#128722; </button></form>
-        <form method="GET" action='/users/logout'> <button type="submit" class="btn btn-info"> Logout </button></form>
-
-      <!-- <%} else {%> -->
-
-        <form method="GET" action='/users/login'> <button type="submit" class="btn btn-info"> Login </button></form>
-        <form method="GET" action='/users/register'> <button type="submit" class="btn btn-info"> Register </button></form>
-
-      <!-- <% } %> -->
-
-
-
-  </nav>
-</header>
+<nav class="navbar navbar-expand-md navbar-dark bg-info">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarToggler">
+    <a class="navbar-brand" href="/">🍔 Home</a>
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item">
+        <a class="nav-link" href="/users/menu">Menu</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/users/order">Order</a>
+      </li>
+    </ul>
+     <!-- <% if (1===1) {%>-->
+      <form method="GET" action='/users/checkout'> <button type="submit" class="btn btn-info">Cart &#128722; </button></form>
+      <form method="GET" action='/users/logout'> <button type="submit" class="btn btn-info"> Logout
+      </button></form>
+    <!-- <%} else {%> -->
+      <form method="GET" action='/users/login'> <button type="submit" class="btn btn-info"> Login
+      </button></form>
+      <form method="GET" action='/users/register'> <button type="submit" class="btn btn-info"> Register </button></form>
+    <!-- <% } %> -->
+  </div>
+</nav>
