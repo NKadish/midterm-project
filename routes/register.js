@@ -1,4 +1,5 @@
 const express = require('express');
+const { register } = require('../server/database');
 const router  = express.Router();
 
 module.exports = (db) => {
@@ -8,22 +9,28 @@ module.exports = (db) => {
     res.render("register");
   });
 
-  /*
+
   // POST request to register a new user
   router.post("/", (req, res) => {
     const {name, email, phone_number, password} = req.body;
-    db.query(`
-    INSERT NEW USER TO USER DATABASE <-----
-    RETURNING *;
-    `, [name, email, phone_number])
-    .then(result => {
-      const {id, name, email, phone_number} = result.rows[0];
-      req.session.id = id;
-      res.redirect(req.baseURL + "/");
-    });
-  })
+    const newUser = {
+      name,
+      email,
+      phone_number,
+      password
+    };
+    console.log("name:", name, "Email: ", email, phone_number, password);
+    if (!name || !email || !phone_number || !password) {
+      res.send("REGISTRATION FAILED");
+    } else {
+      return register(newUser)
+      .then(user => {
+        req.session.id = user.id;
+        res.redirect("/");
+      });
+    }
+  });
 
-  */
 
 
 

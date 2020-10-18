@@ -25,14 +25,14 @@ module.exports = (db) => {
 
   ///////////// POST request to login
   router.post("/login", (req, res) => {
-    const { inputEmail } = req.body;
-    return getUserWithEmail(inputEmail)
+    const { email, password } = req.body;
+    return getUserWithEmail(email)
     .then(user => {
-      if (user) {
+      if (user.password === password) {
         req.session.id = user.id;
         res.redirect("/");
       } else {
-        res.send("404, WRONG EMAIL");
+        res.send("404, COULD NOT LOG IN");
       }
     })
   });
