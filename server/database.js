@@ -23,15 +23,15 @@ exports.getAllUsers = getAllUsers;
 // add a user to the database
 const register =  function(user) {
   const queryString = `INSERT INTO users(name, email, phone_number, password)
-                       VALUES ($1, $2, $3)
+                       VALUES ($1, $2, $3, $4)
                        RETURNING *;
                       `;
 
   const queryParams = [user.name, user.email, user.phone_number, user.password];
 
-  return pool.query(queryString, queryParams)
+  return pool.query(queryString)
     .then(result => {
-      return result.rows[0];
+      return result.rows;
       }
     );
 };
@@ -111,7 +111,7 @@ exports.updateUser = updateUser;
 
 // gets all of the orders placed by the logged in user
 const showAllOrders =  function(user) {
-  const queryString = `SELECT orders.*, carts.*, menu_items.name
+  const queryString = `SELECT placed_at, picked_up_at, status, carts.orders_id, carts.quantity, menu_items.name
                        FROM orders
                        JOIN carts on orders.id = orders_id
                        JOIN menu_items ON carts.menu_id = menu_items.id
@@ -122,7 +122,7 @@ const showAllOrders =  function(user) {
 
   return pool.query(queryString, queryParams)
     .then(result => {
-      return result.rows[0];
+      return result.rows;
       }
     );
 };
@@ -179,7 +179,7 @@ const showCart = function(order) {
 
   return pool.query(queryString, queryParams)
     .then(result => {
-      return result.rows[0];
+      return result.rows;
       }
     );
 };
