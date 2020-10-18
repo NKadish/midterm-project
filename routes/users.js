@@ -41,25 +41,6 @@ module.exports = (db) => {
         res.send("404, WRONG EMAIL");
       }
     })
-
-
-
-
-
-
-    // db.query(`
-    // SELECT id, name, email FROM users
-    // WHERE email = $1;
-    // `, [inputEmail])
-    // .then(result => {
-    //   if (result.rows.email === inputEmail) {
-    //     const { id, name, email } = result.rows[0];
-    //     req.session.id = id;
-    //     res.redirect("/");
-    //   } else {
-    //     res.send("404, WRONG EMAIL");
-    //   }
-    // });
   });
 
   /////////////// POST request to logout (NEEDS IMPLEMENTATION ON PAGE)
