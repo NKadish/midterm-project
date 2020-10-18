@@ -1,3 +1,5 @@
+const database = require('./server/database');
+
 // load .env data into process.env
 require('dotenv').config();
 
