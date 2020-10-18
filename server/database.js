@@ -17,8 +17,8 @@ const register =  function(user) {
   const queryParams = [user.name, user.email, user.phone_number];
 
   return pool.query(queryString, queryParams)
-    .then(res => {
-      return res.rows[0];
+    .then(result => {
+      return result.rows[0];
       }
     );
 };
@@ -33,11 +33,11 @@ const getUserWithEmail = function(email) {
   const queryParams = [email];
 
   return pool.query(queryString, queryParams)
-    .then(res => {
-      if (res.rows[0].email === null) {
+    .then(result => {
+      if (result.rows[0].email === null) {
         return null;
       } else {
-        return res.rows[0];
+        return result.rows[0];
       }
     });
 };
@@ -50,7 +50,7 @@ const getAllMenu =  function() {
                       `;
 
   return pool.query(queryString)
-    .then(res => res.rows);
+    .then(result => result.rows);
 };
 exports.getAllMenu = getAllMenu;
 
@@ -82,8 +82,8 @@ const updateUser =  function(userUpdate) {
   };
 
   return pool.query(queryString, queryParams)
-    .then(res => {
-      return res.rows[0];
+    .then(result => {
+      return result.rows[0];
       }
     );
 };
@@ -101,8 +101,8 @@ const showAllOrders =  function(user) {
   const queryParams = [user.id];
 
   return pool.query(queryString, queryParams)
-    .then(res => {
-      return res.rows[0];
+    .then(result => {
+      return result.rows[0];
       }
     );
 };
@@ -120,8 +120,8 @@ const totalCostOfOrder =  function(order, user) {
   const queryParams = [order.id, user.id];
 
   return pool.query(queryString, queryParams)
-    .then(res => {
-      return res.rows[0];
+    .then(result => {
+      return result.rows[0];
       }
     );
 };
@@ -139,8 +139,8 @@ const longestMakeTimeFromOrder =  function(order) {
   const queryParams = [order.id];
 
   return pool.query(queryString, queryParams)
-    .then(res => {
-      return res.rows[0];
+    .then(result => {
+      return result.rows[0];
       }
     );
 };
@@ -158,8 +158,8 @@ const showCart = function(order) {
   const queryParams = [order.id];
 
   return pool.query(queryString, queryParams)
-    .then(res => {
-      return res.rows[0];
+    .then(result => {
+      return result.rows[0];
       }
     );
 };
@@ -175,8 +175,8 @@ const newOrder =  function(user) {
   const queryParams = [user.id];
 
   return pool.query(queryString, queryParams)
-    .then(res => {
-      return res.rows[0];
+    .then(result => {
+      return result.rows[0];
       }
     );
 };
@@ -192,8 +192,8 @@ const addItemToCart =  function( order, menu, quantity) {
   const queryParams = [menu.id, order.id, quantity];
 
   return pool.query(queryString, queryParams)
-    .then(res => {
-      return res.rows[0];
+    .then(result => {
+      return result.rows[0];
       }
     );
 };
@@ -209,8 +209,8 @@ const updateOrderOnCheckout =  function(order) {
   const queryParams = [order.id];
 
   return pool.query(queryString, queryParams)
-    .then(res => {
-      return res.rows[0];
+    .then(result => {
+      return result.rows[0];
       }
     );
 };
@@ -226,8 +226,8 @@ const updateOrderOnPickup =  function(order) {
   const queryParams = [order.id];
 
   return pool.query(queryString, queryParams)
-    .then(res => {
-      return res.rows[0];
+    .then(result => {
+      return result.rows[0];
       }
     );
 };
