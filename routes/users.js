@@ -6,22 +6,16 @@
  */
 
 const express = require('express');
-const { getUserWithEmail } = require('../server/database');
+const { getUserWithEmail, getAllUsers } = require('../server/database');
 const router  = express.Router();
 
 module.exports = (db) => {
 
   router.get("/", (req, res) => {
-    db.query(`SELECT * FROM users;`)
-      .then(data => {
-        const users = data.rows;
-        res.json({ users });
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
+    return getAllUsers()
+    .then(result => {
+      res.send(result);
+    })
   });
 
   ///////////// GET request for Login page
