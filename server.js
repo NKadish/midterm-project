@@ -1,5 +1,3 @@
-const database = require('./server/database');
-
 // load .env data into process.env
 require('dotenv').config();
 
@@ -47,14 +45,35 @@ const menuRoutes = require("./routes/menu");
 const registerRoutes = require("./routes/register");
 const ordersRoutes = require("./routes/orders");
 const checkoutRoutes = require("./routes/checkout");
+const database = require('./server/database');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
-app.use("/users", usersRoutes(db));
-app.use("/menu", menuRoutes(db));
-app.use("/register", registerRoutes(db));
-app.use("/orders", ordersRoutes(db));
-app.use("/checkout", checkoutRoutes(db));
+
+// /users/endpoint
+const usersRouter = express.Router();
+usersRoutes(usersRouter, database);
+app.use("/users", usersRouter);
+
+// /menu/endpoints
+const menuRouter = express.Router();
+menuRoutes(menuRouter, database);
+app.use("/menu", menuRouter);
+
+// /register/endpoints
+const registerRouter = express.Router();
+registerRoutes(registerRouter, database);
+app.use("/register", registerRouter);
+
+// /orders/endpoints
+const ordersRouter = express.Router();
+ordersRoutes(ordersRouter, database);
+app.use("/orders", ordersRouter);
+
+// /checkout/endpoints
+const checkoutRouter = express.Router();
+checkoutRoutes(checkoutRouter, database);
+app.use("/checkout", checkoutRouter);
 // Note: mount other resources here, using the same pattern above
 
 
