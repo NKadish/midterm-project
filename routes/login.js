@@ -1,12 +1,24 @@
 const express = require('express');
-const { getUserWithEmail } = require('../server/database');
+const { getUserWithEmail, getUserFromCookie } = require('../server/database');
 const router  = express.Router();
 
 module.exports = (db) => {
 
   ///////////// GET request for Login page
   router.get("/", (req, res) => {
-    res.render("login");
+    return getUserFromCookie(req)
+    .then(result => {
+      if (!result) {
+        res.render("login");
+      } else {
+        const user = result;
+        const templateVars = {
+          user,
+          error: null
+        };
+        res.redirect("/");
+      }
+    });
   });
 
   ///////////// POST request to login
