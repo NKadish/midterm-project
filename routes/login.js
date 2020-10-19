@@ -26,11 +26,17 @@ module.exports = (db) => {
     const { email, password } = req.body;
     return getUserWithEmail(email)
     .then(user => {
-      if (user.password === password) {
-        req.session.id = user.id;
-        res.redirect("/");
+      if (user === undefined) {
+        // placeholder error for testing purposes, change to generic later
+        res.send('Could not find a user with that email address! Please try again');
       } else {
-        res.send("404, COULD NOT LOG IN");
+        if (user.password === password) {
+          req.session.id = user.id;
+          res.redirect("/");
+        } else {
+          // placeholder error for testing purposes, change to generic later
+          res.send("Sorry but the password you entered is incorrect, please try again");
+        }
       }
     })
   });
