@@ -6,7 +6,8 @@ module.exports = (db) => {
 
   // GET request to register page
   router.get("/", (req, res) => {
-    res.render("register");
+    const templateVars = { user : req.session.id };
+    res.render("register", templateVars);
   });
 
 
