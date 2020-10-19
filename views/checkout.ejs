@@ -13,12 +13,19 @@
     <h1>Checkout</h1>
     <div>
       <section class="cart-items">
-        cart query items
+        <% for(let items of order) { %>
+          <ol>
+            <li><%= items.name %></li>
+            <li>$<%= items.cost / 100%> </li>
+            <li><img src="<%= items.picture_url %>" ></li>
+            <button> remove item</button>
+          </ol>
+        <% } %>
       </section>
     </div>
     <div>
-      <p>Estimated wait time: query</p>
-      <p>TOTAL: query</p>
+      <p>Estimated wait time: <%= timeToMake %> minutes</p>
+      <p>TOTAL: $<%= totalCost %> </p>
     </div>
     <div>
       <form method="GET" action='/users/orders'>

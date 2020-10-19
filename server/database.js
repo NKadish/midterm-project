@@ -181,15 +181,16 @@ const longestMakeTimeFromOrder =  function(order) {
 exports.longestMakeTimeFromOrder = longestMakeTimeFromOrder;
 
 // gets all the items in the current cart and their prices
-const showCart = function(order) {
-  const queryString = `SELECT menu_items.name, menu_items.cost
+const showCart = function(user) {
+  const queryString = `SELECT menu_items.name, menu_items.cost, menu_items.picture_url, menu_items.time_to_make
                        FROM orders
                        JOIN carts ON orders_id = orders.id
                        JOIN menu_items ON carts.menu_id = menu_items.id
-                       WHERE orders.id = $1;
+                       WHERE orders.user_id = $1
+                       AND placed_at IS NULL;
                       `;
 
-  const queryParams = [order.id];
+  const queryParams = [user.id];
 
   return pool.query(queryString, queryParams)
     .then(result => {
