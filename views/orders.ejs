@@ -13,7 +13,16 @@
     <div>
       <h1>Current orders</h1>
       <section class="pending-orders">
-        pending orders
+        <% for (let item of data) { %>
+          <% if (item.status) { %>
+          <ol>
+            <li><%= item.id%></li>
+            <li>Total: <%= item.cost%></li>
+            <li>Order Placed on <%= item.placed_at%></li>
+
+          </ol>
+          <% } %>
+        <% } %>
       </section>
     </div>
 
@@ -21,16 +30,17 @@
     <h1>Previous orders</h1>
       <section class="prev-orders">
         <% for(let item of data) { %>
+          <% if (!item.status) { %>
           <ol>
-            <li><%= item.placed_at%></li>
-            <li><%= item.picked_up_at%></li>
-            <li><%= item.name%></li>
-            <li><%= item.orders_id%></li>
-            <li><%= item.status%></li>
+            <li>Click To Expand</li>
+            <li>Total: <%= item.cost%></li>
+            <li>Order Placed on <%= item.placed_at%></li>
+            <li>Completed on <%= item.picked_up_at%></li>
 
 
           </ol>
           <% } %>
+        <% } %>
 
 
 
