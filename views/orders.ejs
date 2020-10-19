@@ -20,7 +20,20 @@
     <div>
     <h1>Previous orders</h1>
       <section class="prev-orders">
-        show previous orders
+        <% for(let item of data) { %>
+          <ol>
+            <li><%= item.placed_at%></li>
+            <li><%= item.picked_up_at%></li>
+            <li><%= item.name%></li>
+            <li><%= item.orders_id%></li>
+            <li><%= item.status%></li>
+
+
+          </ol>
+          <% } %>
+
+
+
       </section>
     </div>
   </body>

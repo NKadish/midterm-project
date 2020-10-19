@@ -111,23 +111,36 @@ const updateUser =  function(userUpdate) {
 exports.updateUser = updateUser;
 
 // gets all of the orders placed by the logged in user
-const showAllOrders =  function(user) {
-  const queryString = `SELECT placed_at, picked_up_at, status, carts.orders_id, carts.quantity, menu_items.name
+const showAllOrders =  function(userId) {
+  let allOrders = [];
+  const queryString = `SELECT *
                        FROM orders
-                       JOIN carts on orders.id = orders_id
-                       JOIN menu_items ON carts.menu_id = menu_items.id
                        WHERE user_id = $1;
                       `;
-
-  const queryParams = [user.id];
-
+  const queryParams = [userId];
   return pool.query(queryString, queryParams)
     .then(result => {
       return result.rows;
-      }
-    );
+      });
 };
 exports.showAllOrders = showAllOrders;
+
+// Gets menu items from orders
+const showItemsFromOrders = function(orderId) {
+  const queryString = `
+  SELECT menu_items.name, carts.quantity
+  FROM orders
+  JOIN carts ON orders.id = orders_id
+  JOIN menu_items ON carts.menu_id = menu_items.id
+  WHERE orders.id = $1;`;
+  const queryParams = [orderId];
+
+  return pool.query(queryString, queryParams)
+  .then(result => {
+    return result.rows;
+  });
+};
+exports.showItemsFromOrders = showItemsFromOrders;
 
 // gets the total cost of an order, user is there to make sure it only does it for the user that's logged in
 const totalCostOfOrder =  function(order, user) {

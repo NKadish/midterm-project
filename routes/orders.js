@@ -1,26 +1,27 @@
 
 const express = require('express');
+const { showAllOrders, getUserFromCookie, showItemsFromOrders } = require('../server/database');
 const router  = express.Router();
 
 module.exports = (db) => {
 
   router.get("/", (req, res) => {
-    const templateVars = { user : req.session.id };
-    res.render("orders", templateVars);
+    return showAllOrders(req.session.id)
+    .then(data => {
+      console.log(data);
+      const templateVars = {
+        user: req.session.id,
+        data
+      };
+      res.render("orders", templateVars);
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
   });
 
-  router.get("/", (req, res) => {
-    let query = `SELECT * FROM orders`;
-    db.query(query)
-      .then(data => {
-        const orders = data.rows;
-        res.json({ orders });
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
-  });
+
   return router;
 };
