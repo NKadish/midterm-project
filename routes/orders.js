@@ -6,6 +6,9 @@ const router  = express.Router();
 module.exports = (db) => {
 
   router.get("/", (req, res) => {
+    if (!req.session.id) {
+      return res.send("PLEASE LOG IN");
+    }
     return showAllOrders(req.session.id)
     .then(data => {
       console.log(data);
