@@ -11,11 +11,19 @@
 
   <body>
     <h1>MENU</h1>
+
+
+
+    <section id="menu-items">
+      <% for(let items of data) { %>
+        <ol>
+          <li><%= items.name %></li>
+          <li><%= items.description %></li>
+          <li>$<%= items.cost / 100%> </li>
+          <li><img src="<%= items.picture_url %>" ></li>
+        </ol>
+      <% } %>
+    </section>
   </body>
-
-  <section id="menu-items">
-    add query items
-  </section>
-
 
 </html>
