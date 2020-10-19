@@ -4,7 +4,7 @@ VALUES('Big Wac', 'Our signature sandwhich! Warning: it might get messy! Comes w
 ('WcChicken', 'Our signature chicken sandwhich. Comes with a drink and fries.', 1039, 20, 'https://www.mcdonalds.com/is/image/content/dam/ca/nfl/web/nutrition/products/tile/en/mcdonalds-mcchicken.jpg?'),
 ('WcDouble', 'A smaller beef burger', 309, 15, 'https://www.mcdonalds.com/is/image/content/dam/ca/nfl/web/nutrition/products/tile/en/mcdonalds-mcdouble.jpg'),
 ('Tiny Chicken', 'A smaller chicken burger', 269, 15, 'https://www.mcdonalds.com/is/image/content/dam/ca/nfl/web/nutrition/products/tile/en/mcdonalds-junior-chicken.jpg'),
-('Hamburger', 'A smaller chicken burger', 169, 15, 'https://www.mcdonalds.com/is/image/content/dam/ca/nfl/web/nutrition/products/tile/en/mcdonalds-hamburger.jpg'),
+('Hamburger', 'For those who just want a simple burger', 169, 15, 'https://www.mcdonalds.com/is/image/content/dam/ca/nfl/web/nutrition/products/tile/en/mcdonalds-hamburger.jpg'),
 ('10 Chicken Nuggets', '10 piece chicken nuggets! Comes with a sauce, a drink and fries.', 1299, 25, 'https://www.mcdonalds.com/is/image/content/dam/ca/nfl/web/nutrition/products/tile/en/mcdonalds-10-chicken-mcnuggets.jpg'),
 ('Chicken Wrap', 'A chicken wrap with lettuce, cheese, bacon and ranch. Comes with a drink and fries.', 769, 10, 'https://www.mcdonalds.com/is/image/content/dam/ca/nfl/web/nutrition/products/tile/en/mcdonalds-chicken-bacon-signature-mcwrap-crispy.jpg'),
 ('Fried Fish Sandwhich', 'Fried fish patty with tartar sauce and a half slice of cheese! Comes with a drink and fries.', 1039, 15, 'https://www.mcdonalds.com/is/image/content/dam/ca/nfl/web/nutrition/products/tile/en/mcdonalds-filet-o-fish.jpg'),
