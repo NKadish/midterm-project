@@ -16,9 +16,7 @@ module.exports = (db) => {
           timeToMake = item.time_to_make;
         }
       };
-
       const templateVars = { user : req.session.id, order , totalCost, timeToMake};
-      console.log(templateVars);
       res.render("checkout", templateVars);
     })
     .catch(err => {
