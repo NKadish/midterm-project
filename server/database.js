@@ -329,4 +329,46 @@ const getActiveOrder =  function(userId, menuId, quantity) {
 };
 exports.getActiveOrder = getActiveOrder;
 
+// gets the phone number from a user id
+const getPhoneNumberFromId =  function(userId) {
+  const queryString = `SELECT phone_number FROM users
+                       WHERE id = $1;
+                      `;
+
+  const queryParams = [userId];
+
+  return pool.query(queryString, queryParams)
+    .then(result => {
+      return result.rows[0];
+      }
+    );
+};
+exports.getPhoneNumberFromId = getPhoneNumberFromId;
+
+// gets the id of an order that has been placed but not picked up yet
+const getPlacedOrderId =  function(userId) {
+  const queryString = `SELECT id FROM orders
+                       WHERE user_id = $1 AND picked_up_at IS NULL;
+                      `;
+
+  const queryParams = [userId];
+
+  return pool.query(queryString, queryParams)
+    .then(result => {
+      return result.rows[0];
+      }
+    );
+};
+exports.getPlacedOrderId = getPlacedOrderId;
+
+const menuItemsMessage = function(arr) {
+  let output = '';
+  for (const item of arr) {
+    output += item.name;
+    output += `, Quantity: ${item.quantity} | `
+  }
+  return output;
+}
+exports.menuItemsMessage = menuItemsMessage;
+
 

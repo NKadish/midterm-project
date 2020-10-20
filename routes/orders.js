@@ -1,7 +1,7 @@
-
 const express = require('express');
-const { showAllOrders, getUserFromCookie, showItemsFromOrders, updateOrderOnCheckout, newOrder } = require('../server/database');
+const { showAllOrders, getUserFromCookie, showItemsFromOrders, updateOrderOnCheckout, newOrder, getPlacedOrderId, menuItemsMessage } = require('../server/database');
 const router  = express.Router();
+const { sendText } = require('../api/twilio');
 
 module.exports = (db) => {
 
@@ -31,11 +31,18 @@ module.exports = (db) => {
   router.post('/', (req, res) => {
     const userId = req.session.id;
     return updateOrderOnCheckout(userId)
-    .then(user =>{
+    .then(() =>{
       newOrder(req.session.id);
-      res.redirect("/orders")
-    })
+      return getPlacedOrderId(userId)
+      .then(orderId => {
+        return showItemsFromOrders(orderId.id)
+        .then(menuItems => {
+          let menuItemString = menuItemsMessage(menuItems);
 
+          res.redirect("/orders")
+        })
+      })
+    })
   });
 
   return router;
