@@ -9,7 +9,6 @@
 
 # Menu Page
 - GET /menu (GET request for menu page)
-- GET /menu/:id (GET request for specific item from menu)
 - POST /menu (POST requests to add items to cart from menu)
 
 # Checkout Page
