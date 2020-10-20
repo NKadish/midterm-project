@@ -45,7 +45,7 @@ module.exports = (db) => {
       let menuItemString = menuItemsMessage(menuItems);
       // Text to Restaurant with order
       console.log(menuItemString, `+1${restaurantNum}`);
-      //sendText(menuItemString, `+1${restaurantNum}`);
+      //sendText(menuItemString, `+1${restaurantNum}`, 0);
       return longestMakeTimeFromOrder(orderId)
     })
     .then(time => {
