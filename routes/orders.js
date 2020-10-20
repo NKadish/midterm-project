@@ -1,6 +1,6 @@
 
 const express = require('express');
-const { showAllOrders, getUserFromCookie, showItemsFromOrders } = require('../server/database');
+const { showAllOrders, getUserFromCookie, showItemsFromOrders, updateOrderOnCheckout } = require('../server/database');
 const router  = express.Router();
 
 module.exports = (db) => {
@@ -28,6 +28,11 @@ module.exports = (db) => {
     }
   });
 
+  router.post('/', (req, res) => {
+    const userId = req.session.id;
+    updateOrderOnCheckout(userId);
+    res.redirect("/orders")
+  });
 
   return router;
 };

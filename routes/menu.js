@@ -8,7 +8,6 @@ module.exports = (db) => {
     return getAllMenu()
       .then(data => {
         const templateVars = { user : req.session.id, data };
-        console.log(templateVars);
         res.render("menu", templateVars);
       })
       .catch(err => {

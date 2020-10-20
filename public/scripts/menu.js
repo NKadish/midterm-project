@@ -13,4 +13,5 @@ $(document).ready(function() {
     });
     ($(this).parent().find('.quantity')).val(1);
   });
+
 });
