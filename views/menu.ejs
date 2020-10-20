@@ -3,6 +3,8 @@
   <head>
     <%- include('partials/_head') %>
     <title>Menu</title>
+    <!-- Char Counter JS -->
+    <script type="text/javascript" src="/scripts/menu.js"></script>
   </head>
 
   <header>
@@ -22,6 +24,7 @@
           <li>$<%= items.cost / 100%> </li>
           <li><img src="<%= items.picture_url %>" ></li>
         </ol>
+          <button class="addToCart" type="submit" value="<%= items.id %>">Add to Cart</button>
       <% } %>
     </section>
   </body>

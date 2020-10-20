@@ -1,5 +1,5 @@
 const express = require('express');
-const { getAllMenu } = require('../server/database');
+const { getAllMenu, getActiveOrder } = require('../server/database');
 const router  = express.Router();
 
 module.exports = (db) => {
@@ -21,6 +21,13 @@ module.exports = (db) => {
       });
   });
 
+  router.post('/', (req, res) => {
+    const userId = req.session.id;
+    let menuId = req.body.$menuItemId;
+    let quantity = req.body.$quantity;
+    console.log(menuId, quantity);
+    return getActiveOrder(userId, menuId);
+  });
 
   // router.get("/", (req, res) => {
   //   res.render("menu", templateVars);

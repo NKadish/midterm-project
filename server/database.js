@@ -59,7 +59,7 @@ exports.getUserWithEmail = getUserWithEmail;
 
 // get every item on the menu
 const getAllMenu =  function() {
-  const queryString = `SELECT name, description, cost, picture_url
+  const queryString = `SELECT id, name, description, cost, picture_url
                        FROM menu_items;
                       `;
 
@@ -201,30 +201,30 @@ const showCart = function(user) {
 exports.showCart = showCart;
 
 // create a new order
-const newOrder =  function(user) {
+const newOrder =  function(userId) {
   const queryString = `INSERT INTO orders(user_id)
                        VALUES ($1)
                        RETURNING *;
                       `;
 
-  const queryParams = [user.id];
+  const queryParams = [userId];
 
   return pool.query(queryString, queryParams)
     .then(result => {
-      return result.rows[0];
+      return result.rows;
       }
     );
 };
 exports.newOrder = newOrder;
 
 // when the user goes to add an item to their cart
-const addItemToCart =  function( order, menu, quantity) {
+const addItemToCart =  function(orderId, menuId, quantity) {
   const queryString = `INSERT INTO carts(menu_id, orders_id, quantity)
                        VALUES ($1, $2, $3)
                        RETURNING *;
                       `;
 
-  const queryParams = [menu.id, order.id, quantity];
+  const queryParams = [menuId, orderId, quantity];
 
   return pool.query(queryString, queryParams)
     .then(result => {
@@ -291,3 +291,16 @@ const getUserFromCookie = (req) => {
   })
 };
 exports.getUserFromCookie = getUserFromCookie;
+
+const getActiveOrder =  function(userId, menuId) {
+  const queryString = `SELECT *
+                       FROM orders
+                       WHERE user_id = $1 AND status = true;
+                      `;
+  const queryParams = [userId];
+  return pool.query(queryString, queryParams)
+    .then(result => {
+        addItemToCart(result.rows[0].id, menuId, 1);
+      });
+};
+exports.getActiveOrder = getActiveOrder;

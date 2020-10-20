@@ -1,5 +1,5 @@
 const express = require('express');
-const { register } = require('../server/database');
+const { register, newOrder } = require('../server/database');
 const router  = express.Router();
 
 module.exports = (db) => {
@@ -27,6 +27,7 @@ module.exports = (db) => {
       return register(newUser)
       .then(user => {
         req.session.id = user.id;
+        newOrder(user.id);
         res.redirect("/");
       });
     }
