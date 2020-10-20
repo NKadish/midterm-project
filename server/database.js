@@ -162,7 +162,7 @@ const totalCostOfOrder =  function(order, user) {
 exports.totalCostOfOrder = totalCostOfOrder;
 
 // gets the highest time to make of the items in an order
-const longestMakeTimeFromOrder =  function(order) {
+const longestMakeTimeFromOrder =  function(orderId) {
   const queryString = `SELECT max(menu_items.time_to_make)
                        FROM orders
                        JOIN carts ON orders_id = orders.id
@@ -170,7 +170,7 @@ const longestMakeTimeFromOrder =  function(order) {
                        WHERE orders.id = $1;
                       `;
 
-  const queryParams = [order.id];
+  const queryParams = [orderId];
 
   return pool.query(queryString, queryParams)
     .then(result => {
