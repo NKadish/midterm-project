@@ -1,5 +1,5 @@
 const express = require('express');
-const { showCart, totalCostOfOrder, longestMakeTimeFromOrder, getUserFromCookie } = require('../server/database');
+const { showCart, totalCostOfOrder, longestMakeTimeFromOrder, getUserFromCookie, removeItemFromCart } = require('../server/database');
 const router  = express.Router();
 
 module.exports = (db) => {
@@ -29,6 +29,12 @@ module.exports = (db) => {
       });
     }
   });
+
+  router.post("/", (req, res) => {
+    const cartId = req.body.$cartId;
+    console.log(cartId);
+    removeItemFromCart(cartId);
+  })
 
   return router;
 };
