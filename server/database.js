@@ -302,7 +302,7 @@ exports.getUserFromCookie = getUserFromCookie;
 const getActiveOrder =  function(userId, menuId, quantity) {
   const queryString = `SELECT *
                        FROM orders
-                       WHERE user_id = $1 AND status = true;
+                       WHERE user_id = $1 AND status = true AND placed_at IS NULL;
                       `;
   const queryParams = [userId];
   return pool.query(queryString, queryParams)
