@@ -55,7 +55,8 @@ module.exports = (db) => {
     .then(number =>{
       // Text to Client with confirmation
       console.log(`Your order will be ready for pick up in ${orderTime} minutes!`, number.phone_number)
-      //sendText(`Your order will be ready for pick up in ${orderTime} minutes!`, number.phone_number);
+      //sendText(`Your order will be ready for pick up in ${orderTime} minutes!`, number.phone_number, 0);
+      //sendText(`Your order is ready for pick up!`, number.phone_number, orderTime);
       newOrder(userId);
       res.redirect("/orders");
       })
