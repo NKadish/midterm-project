@@ -9,7 +9,8 @@ module.exports = (db) => {
     if (getUserFromCookie(req.session.id)) {
         res.redirect("/");
       } else {
-        res.render("login");
+        const templateVars = { user: req.session.id };
+        res.render("login", templateVars);
       }
 
   });

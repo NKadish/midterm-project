@@ -11,9 +11,6 @@ module.exports = (db) => {
         console.log(templateVars);
         res.render("menu", templateVars);
       })
-      // .then(data => {
-      //   res.send({ data });
-      // })
       .catch(err => {
         res
           .status(500)
@@ -25,13 +22,8 @@ module.exports = (db) => {
     const userId = req.session.id;
     let menuId = req.body.$menuItemId;
     let quantity = req.body.$quantity;
-    console.log(menuId, quantity);
     return getActiveOrder(userId, menuId);
   });
-
-  // router.get("/", (req, res) => {
-  //   res.render("menu", templateVars);
-  // });
 
   return router;
 };

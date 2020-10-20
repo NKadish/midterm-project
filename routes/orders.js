@@ -7,7 +7,7 @@ module.exports = (db) => {
 
   router.get("/", (req, res) => {
     if (!getUserFromCookie(req.session.id)){
-      return res.send("PLEASE LOG IN");
+      return res.redirect("/");
     } else {
       return getUserFromCookie(req.session.id)
       .then(dbUser => {

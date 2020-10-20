@@ -1,13 +1,17 @@
 const express = require('express');
-const { register, newOrder } = require('../server/database');
+const { register, newOrder, getUserFromCookie } = require('../server/database');
 const router  = express.Router();
 
 module.exports = (db) => {
 
   // GET request to register page
   router.get("/", (req, res) => {
-    const templateVars = { user : req.session.id };
-    res.render("register", templateVars);
+    if (getUserFromCookie(req.session.id)) {
+      res.redirect("/");
+    } else {
+      const templateVars = { user: req.session.id };
+      res.render("register", templateVars);
+    }
   });
 
 
