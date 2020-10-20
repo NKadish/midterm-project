@@ -8,12 +8,8 @@ module.exports = (db) => {
     return getAllMenu()
       .then(data => {
         const templateVars = { user : req.session.id, data };
-        console.log(templateVars);
         res.render("menu", templateVars);
       })
-      // .then(data => {
-      //   res.send({ data });
-      // })
       .catch(err => {
         res
           .status(500)
@@ -28,10 +24,6 @@ module.exports = (db) => {
     console.log(menuId, quantity);
     return getActiveOrder(userId, menuId);
   });
-
-  // router.get("/", (req, res) => {
-  //   res.render("menu", templateVars);
-  // });
 
   return router;
 };

@@ -1,5 +1,5 @@
 const express = require('express');
-const { showCart, totalCostOfOrder, longestMakeTimeFromOrder } = require('../server/database');
+const { showCart, totalCostOfOrder, longestMakeTimeFromOrder, updateOrderOnCheckout } = require('../server/database');
 const router  = express.Router();
 
 module.exports = (db) => {

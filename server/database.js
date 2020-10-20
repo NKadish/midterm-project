@@ -235,13 +235,14 @@ const addItemToCart =  function(orderId, menuId, quantity) {
 exports.addItemToCart = addItemToCart;
 
 // updates orders on checkout, adding the timestamp that the order was placed at
-const updateOrderOnCheckout =  function(order) {
-  const queryString = `UPDATE order
-                       SET placed_at = GETDATE()
-                       WHERE id = $1;
+const updateOrderOnCheckout =  function(userId) {
+  const queryString = `UPDATE orders
+                       SET placed_at = NOW()
+                       WHERE user_id = $1
+                       AND status = true;
                       `;
 
-  const queryParams = [order.id];
+  const queryParams = [userId];
 
   return pool.query(queryString, queryParams)
     .then(result => {
@@ -304,3 +305,5 @@ const getActiveOrder =  function(userId, menuId) {
       });
 };
 exports.getActiveOrder = getActiveOrder;
+
+

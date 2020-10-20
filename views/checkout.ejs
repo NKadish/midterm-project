@@ -28,8 +28,8 @@
       <p>TOTAL: $<%= totalCost %> </p>
     </div>
     <div>
-      <form method="GET" action='/orders'>
-        <button type="submit" class="btn btn-info"> Place Order </button>
+      <form method="POST" action='/orders'>
+        <button id="placeOrder" type="submit" class="btn btn-info"> Place Order </button>
       </form>
     </div>
 

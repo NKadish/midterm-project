@@ -11,4 +11,5 @@ $(document).ready(function() {
       data: {$menuItemId, $quantity}
     });
   });
+
 });
