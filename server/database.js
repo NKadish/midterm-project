@@ -274,21 +274,26 @@ const hashPassword = function(password) {
 exports.hashPassword = hashPassword;
 
 // Gets ID from cookie session
-const getUserFromCookie = (req) => {
-  const queryString = `
-  SELECT * FROM users
-  WHERE id = $1;
-  `;
-  const queryParams = [req.session.id];
+const getUserFromCookie = (userId) => {
+  if (!userId) {
+    return null;
+  } else {
+    const queryString = `
+    SELECT * FROM users
+    WHERE id = $1;
+    `;
+    const queryParams = [userId];
 
-  return pool.query(queryString, queryParams)
-  .then (result => {
-    if (result.rows === []) {
-      return null;
-    } else {
-      return result.rows[0];
-    }
-  })
+    return pool.query(queryString, queryParams)
+    .then (result => {
+      if (result.rows === []) {
+        return null;
+      } else {
+        return result.rows[0];
+      }
+    })
+  }
+
 };
 exports.getUserFromCookie = getUserFromCookie;
 

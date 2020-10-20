@@ -6,19 +6,13 @@ module.exports = (db) => {
 
   ///////////// GET request for Login page
   router.get("/", (req, res) => {
-    return getUserFromCookie(req)
-    .then(result => {
-      if (!result) {
-        res.render("login");
-      } else {
-        const user = result;
-        const templateVars = {
-          user,
-          error: null
-        };
+    if (getUserFromCookie(req.session.id)) {
         res.redirect("/");
+      } else {
+        const templateVars = { user: req.session.id };
+        res.render("login", templateVars);
       }
-    });
+
   });
 
   ///////////// POST request to login
