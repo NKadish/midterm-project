@@ -182,7 +182,7 @@ exports.longestMakeTimeFromOrder = longestMakeTimeFromOrder;
 
 // gets all the items in the current cart and their prices
 const showCart = function(user) {
-  const queryString = `SELECT menu_items.name, menu_items.cost, menu_items.picture_url, menu_items.time_to_make
+  const queryString = `SELECT menu_items.name, menu_items.cost, menu_items.picture_url, menu_items.time_to_make, carts.quantity
                        FROM orders
                        JOIN carts ON orders_id = orders.id
                        JOIN menu_items ON carts.menu_id = menu_items.id
@@ -292,7 +292,8 @@ const getUserFromCookie = (req) => {
 };
 exports.getUserFromCookie = getUserFromCookie;
 
-const getActiveOrder =  function(userId, menuId) {
+// gets the active order and adds an item to the cart.
+const getActiveOrder =  function(userId, menuId, quantity) {
   const queryString = `SELECT *
                        FROM orders
                        WHERE user_id = $1 AND status = true;
@@ -300,7 +301,7 @@ const getActiveOrder =  function(userId, menuId) {
   const queryParams = [userId];
   return pool.query(queryString, queryParams)
     .then(result => {
-        addItemToCart(result.rows[0].id, menuId, 1);
+        addItemToCart(result.rows[0].id, menuId, quantity);
       });
 };
 exports.getActiveOrder = getActiveOrder;

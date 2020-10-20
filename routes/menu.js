@@ -26,7 +26,7 @@ module.exports = (db) => {
     let menuId = req.body.$menuItemId;
     let quantity = req.body.$quantity;
     console.log(menuId, quantity);
-    return getActiveOrder(userId, menuId);
+    return getActiveOrder(userId, menuId, quantity);
   });
 
   // router.get("/", (req, res) => {

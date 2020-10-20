@@ -4,11 +4,13 @@ $(document).ready(function() {
     event.preventDefault();
     let $menuItemId = $(this).val();
     console.log($menuItemId);
-    let $quantity = 1;
+    let $quantity = ($(this).parent().find('.quantity')).val();
+    console.log($quantity);
     $.ajax({
       url: '/menu',
       method: 'POST',
       data: {$menuItemId, $quantity}
     });
+    ($(this).parent().find('.quantity')).val(1);
   });
 });
