@@ -27,7 +27,8 @@ module.exports = (db) => {
 
   router.post('/', (req, res) => {
     const userId = req.session.id;
-    return updateOrderOnCheckout(userId);
+    updateOrderOnCheckout(userId);
+    res.redirect("/orders")
   });
 
   return router;
