@@ -182,7 +182,7 @@ exports.longestMakeTimeFromOrder = longestMakeTimeFromOrder;
 
 // gets all the items in the current cart and their prices
 const showCart = function(user) {
-  const queryString = `SELECT menu_items.name, menu_items.cost, menu_items.picture_url, menu_items.time_to_make, carts.quantity
+  const queryString = `SELECT menu_items.name, menu_items.cost, menu_items.picture_url, menu_items.time_to_make, carts.quantity, carts.id
                        FROM orders
                        JOIN carts ON orders_id = orders.id
                        JOIN menu_items ON carts.menu_id = menu_items.id
@@ -233,6 +233,23 @@ const addItemToCart =  function(orderId, menuId, quantity) {
     );
 };
 exports.addItemToCart = addItemToCart;
+
+// when the user goes to add an item to their cart
+const removeItemFromCart =  function(cartId) {
+  const queryString = `DELETE FROM carts
+                       WHERE id = $1
+                       RETURNING *;
+                      `;
+
+  const queryParams = [cartId];
+
+  return pool.query(queryString, queryParams)
+    .then(result => {
+      return result.rows[0];
+      }
+    );
+};
+exports.removeItemFromCart = removeItemFromCart;
 
 // updates orders on checkout, adding the timestamp that the order was placed at
 const updateOrderOnCheckout =  function(userId) {
@@ -311,5 +328,47 @@ const getActiveOrder =  function(userId, menuId, quantity) {
       });
 };
 exports.getActiveOrder = getActiveOrder;
+
+// gets the phone number from a user id
+const getPhoneNumberFromId =  function(userId) {
+  const queryString = `SELECT phone_number FROM users
+                       WHERE id = $1;
+                      `;
+
+  const queryParams = [userId];
+
+  return pool.query(queryString, queryParams)
+    .then(result => {
+      return result.rows[0];
+      }
+    );
+};
+exports.getPhoneNumberFromId = getPhoneNumberFromId;
+
+// gets the id of an order that has been placed but not picked up yet
+const getPlacedOrderId =  function(userId) {
+  const queryString = `SELECT id FROM orders
+                       WHERE user_id = $1 AND picked_up_at IS NULL;
+                      `;
+
+  const queryParams = [userId];
+
+  return pool.query(queryString, queryParams)
+    .then(result => {
+      return result.rows[0];
+      }
+    );
+};
+exports.getPlacedOrderId = getPlacedOrderId;
+
+const menuItemsMessage = function(arr) {
+  let output = '';
+  for (const item of arr) {
+    output += item.name;
+    output += `, Quantity: ${item.quantity} | `
+  }
+  return output;
+}
+exports.menuItemsMessage = menuItemsMessage;
 
 
