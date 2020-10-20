@@ -234,6 +234,23 @@ const addItemToCart =  function(orderId, menuId, quantity) {
 };
 exports.addItemToCart = addItemToCart;
 
+// when the user goes to add an item to their cart
+const removeItemFromCart =  function(orderId, menuId) {
+  const queryString = `DELETE FROM carts
+                       WHERE orders_id = $1 AND menu_id = $2;
+                       RETURNING *;
+                      `;
+
+  const queryParams = [menuId, orderId];
+
+  return pool.query(queryString, queryParams)
+    .then(result => {
+      return result.rows[0];
+      }
+    );
+};
+exports.removeItemFromCart = removeItemFromCart;
+
 // updates orders on checkout, adding the timestamp that the order was placed at
 const updateOrderOnCheckout =  function(userId) {
   const queryString = `UPDATE orders
