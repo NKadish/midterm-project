@@ -13,11 +13,12 @@ module.exports = (db) => {
         let totalCost = 0;
         let timeToMake = 0;
         for (let item of order) {
-          totalCost += item.cost / 100;
+          totalCost += item.cost;
           if (item.time_to_make > timeToMake) {
             timeToMake = item.time_to_make;
           }
         };
+        totalCost = Math.round(totalCost) / 100;
         const templateVars = { user : req.session.id, order , totalCost, timeToMake};
         res.render("checkout", templateVars);
       })
