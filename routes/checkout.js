@@ -6,7 +6,7 @@ module.exports = (db) => {
 
   router.get("/", (req, res) => {
     if (!getUserFromCookie(req.session.id)) {
-      res.redirect("/");
+      res.redirect("./login");
     } else {
       return showCart(req.session)
       .then(order => {

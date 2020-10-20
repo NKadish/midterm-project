@@ -7,14 +7,12 @@ module.exports = (db) => {
 
   router.get("/", (req, res) => {
     if (!getUserFromCookie(req.session.id)){
-      return res.redirect("/");
+      return res.redirect("./login");
     } else {
       return getUserFromCookie(req.session.id)
       .then(dbUser => {
-        console.log("user: ", dbUser);
         return showAllOrders(dbUser.id)
         .then(orders => {
-          console.log("orders: ", orders);
           const templateVars = {
             user: req.session.id,
             orders
