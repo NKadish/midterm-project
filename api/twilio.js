@@ -1,3 +1,5 @@
+const { updateOrderOnPickup } = require('../server/database');
+
 require('dotenv').config();
 
 const sid = process.env.TWILIO_SID;

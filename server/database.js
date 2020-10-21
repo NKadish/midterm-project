@@ -273,7 +273,7 @@ exports.updateOrderOnCheckout = updateOrderOnCheckout;
 const updateOrderOnPickup =  function(orderId) {
   const queryString = `UPDATE order
                        SET picked_up_at = GETDATE(), status = 'picked-up'
-                       WHERE id = $1 AND status = 'active';
+                       WHERE id = $1';
                       `;
 
   const queryParams = [orderId];
