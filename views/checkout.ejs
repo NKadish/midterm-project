@@ -17,7 +17,7 @@
         <% for(let items of order) { %>
           <ol>
             <li><%= items.name %></li>
-            <li>$<%= items.cost / 100%> </li>
+            <li>$<%= (items.cost * items.quantity) / 100%> </li>
             <li><%= items.quantity %></li>
             <li><img src="<%= items.picture_url %>" ></li>
             <button class="removeFromCart" type="submit" value="<%= items.id %>"> remove item</button>

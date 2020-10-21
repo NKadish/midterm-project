@@ -5,5 +5,5 @@ CREATE TABLE orders (
   restaurant_id INTEGER NOT NULL REFERENCES restaurant(id) ON DELETE CASCADE DEFAULT 1,
   placed_at TIMESTAMP,
   picked_up_at TIMESTAMP,
-  status BOOLEAN DEFAULT TRUE
+  status VARCHAR(255) DEFAULT 'active'
 );
