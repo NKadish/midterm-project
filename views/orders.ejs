@@ -35,7 +35,7 @@
               <p><%= (Object.values(menuItems[order.id]))%><br />
               <strong>Total:</strong> $<%= ((orderTotals[order.id]) / 100 )%><br/></p>
               <p><strong>Order Placed on</strong> <%= order.placed_at.toLocaleString('en-US', {timeZone: 'Canada/Eastern'})%><br />
-              <strong>Completed on:</strong> order.picked_up_at.toLocaleString('en-US', {timeZone: 'Canada/Eastern'})<br /></p>
+              <strong>Completed on:</strong> <%=order.picked_up_at.toLocaleString('en-US', {timeZone: 'Canada/Eastern'})%><br /></p>
 
             <% } %>
           </div>
