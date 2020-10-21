@@ -7,43 +7,43 @@
 
   <header>
     <%- include('partials/_header') %>
+    <link rel="stylesheet" href="/styles/orders.css" type="text/css" />
   </header>
 
   <body>
-    <div>
+    <div >
       <h1>Current orders</h1>
       <section class="pending-orders">
-
         <% for (let order of orders) { %>
-          <div>
+
           <% if (order.status === 'placed') { %>
-          <ol>
-            <li><%= (Object.values(menuItems[order.id]))%></li>
-            <li>Total: $<%= ((orderTotals[order.id]) / 100 )%></li>
-            <li>Order Placed on <%= order.placed_at%></li>
-            <li>Ready in: countdown?</li>
-          </ol>
+            <div class="each-item">
+            <span><%= (Object.values(menuItems[order.id]))%><br />
+            <strong>Total:</strong> $<%= ((orderTotals[order.id]) / 100 )%><br/></span>
+            <span><strong>Order Placed on</strong> <%= order.placed_at%><br />
+            <strong>Ready in:</strong> countdown?<br /></span>
+          </div>
           <% } %>
-        </div>
         <% } %>
+
       </section>
     </div>
 
     <div>
     <h1>Previous orders</h1>
-      <section class="prev-orders">
+      <section class="pending-orders">
         <% for(let order of orders) { %>
           <% if (order.status === 'picked up') { %>
-          <ol>
-            <li><%= (Object.values(menuItems[order.id]))%></li>
-            <li>Total: $<%= ((orderTotals[order.id]) / 100 )%></li>
-            <li>Order Placed on <%= order.placed_at%></li>
-            <li>Completed on <%= order.picked_up_at%></li>
+            <div class="each-item">
 
+              <p><%= (Object.values(menuItems[order.id]))%><br />
+              <strong>Total:</strong> $<%= ((orderTotals[order.id]) / 100 )%><br/></p>
+              <p><strong>Order Placed on</strong> <%= order.placed_at%><br />
+              <strong>Completed on:</strong> order.picked_up_at<br /></p>
 
-          </ol>
+            <% } %>
+          </div>
           <% } %>
-        <% } %>
 
 
 

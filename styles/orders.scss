@@ -1,0 +1,25 @@
+h1 {
+
+}
+
+
+.pending-orders {
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 0.5em;
+}
+
+.each-item {
+  display: flex;
+  flex-direction: row;
+
+  text-align: center;
+  align-content: center;
+  margin-bottom: 1vw;
+  width: 40%;
+  border: 2px solid #545149;
+  padding: 0.25em;
+}

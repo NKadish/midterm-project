@@ -17,7 +17,7 @@ module.exports = (db) => {
           .then(menu => {
             let menuItems = (menuItemsArr(menu))
             let orderTotals = (orderTotal(menu))
-            console.log(orderTotals)
+            console.log(menuItems)
             const templateVars = {
               user: req.session.id,
               orders,

@@ -379,7 +379,8 @@ const menuItemsArr = function(orders) {
   for (let order of orders) {
     if (currOrderID === order.id) {
       menuItems[currOrderID].push(order.name);
-      menuItems[currOrderID].push(order.quantity)
+      menuItems[currOrderID].push(`Quantity:${order.quantity}\n`);
+
     } else {
       costOfOrder = 0;
       currOrderID = order.id;
