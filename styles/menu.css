@@ -1,0 +1,40 @@
+*, *:before, *:after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: white;
+}
+
+#menu-items {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.item-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  list-style-type: none;
+  width: 40vw;
+  margin: 3em;
+  flex-grow: 1;
+}
+
+.item_name {
+  margin: 2em;
+}
+
+.item-description {
+  width: 75%;
+}
+
+.image {
+  border-radius: 100%;
+}
+
+/*# sourceMappingURL=menu.css.map */

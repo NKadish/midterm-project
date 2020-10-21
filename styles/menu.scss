@@ -1,0 +1,42 @@
+
+body{
+  background-color: white;
+}
+
+#menu-items{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.item-list{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  list-style-type: none;
+  width: 40vw;
+  margin: 3em;
+  flex-grow: 1;
+}
+
+.item-name {
+  margin: 1em;
+}
+
+.item-description{
+  width: 75%;
+}
+
+.image{
+  border-radius: 100%;
+}
+
+.item-footer{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 60%;
+  margin: 0.5em 0 0 0;
+}
