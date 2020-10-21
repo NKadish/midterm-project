@@ -20,7 +20,7 @@
           <ol>
             <li><%= (Object.values(menuItems[order.id]))%></li>
             <li>Total: $<%= ((orderTotals[order.id]) / 100 )%></li>
-            <li>Order Placed on <%= order.placed_at%></li>
+            <li>Order Placed on <%= order.placed_at.toLocaleString('en-US', {timeZone: 'Canada/Eastern'})%></li>
             <li>Ready in: countdown?</li>
           </ol>
           <% } %>
@@ -37,8 +37,8 @@
           <ol>
             <li><%= (Object.values(menuItems[order.id]))%></li>
             <li>Total: $<%= ((orderTotals[order.id]) / 100 )%></li>
-            <li>Order Placed on <%= order.placed_at%></li>
-            <li>Completed on <%= order.picked_up_at%></li>
+            <li>Order Placed on <%= order.placed_at.toLocaleString('en-US', {timeZone: 'Canada/Eastern'})%></li>
+            <li>Completed on <%= order.picked_up_at.toLocaleString('en-US', {timeZone: 'Canada/Eastern'})%></li>
 
 
           </ol>
