@@ -254,9 +254,9 @@ exports.removeItemFromCart = removeItemFromCart;
 // updates orders on checkout, adding the timestamp that the order was placed at
 const updateOrderOnCheckout =  function(userId) {
   const queryString = `UPDATE orders
-                       SET placed_at = NOW()
+                       SET placed_at = NOW(), status = 'placed'
                        WHERE user_id = $1
-                       AND status = true;
+                       AND status = 'active';
                       `;
 
   const queryParams = [userId];
@@ -270,13 +270,13 @@ const updateOrderOnCheckout =  function(userId) {
 exports.updateOrderOnCheckout = updateOrderOnCheckout;
 
 // updates orders on pickup, adding the timestamp that the order was picked up at and setting status to f
-const updateOrderOnPickup =  function(order) {
+const updateOrderOnPickup =  function(orderId) {
   const queryString = `UPDATE order
-                       SET picked_up_at = GETDATE(), status = false
-                       WHERE id = $1;
+                       SET picked_up_at = GETDATE(), status = 'picked-up'
+                       WHERE id = $1';
                       `;
 
-  const queryParams = [order.id];
+  const queryParams = [orderId];
 
   return pool.query(queryString, queryParams)
     .then(result => {
@@ -319,7 +319,7 @@ exports.getUserFromCookie = getUserFromCookie;
 const getActiveOrder =  function(userId, menuId, quantity) {
   const queryString = `SELECT *
                        FROM orders
-                       WHERE user_id = $1 AND status = true AND placed_at IS NULL;
+                       WHERE user_id = $1 AND status = 'active';
                       `;
   const queryParams = [userId];
   return pool.query(queryString, queryParams)
@@ -348,7 +348,9 @@ exports.getPhoneNumberFromId = getPhoneNumberFromId;
 // gets the id of an order that has been placed but not picked up yet
 const getPlacedOrderId =  function(userId) {
   const queryString = `SELECT id FROM orders
-                       WHERE user_id = $1 AND picked_up_at IS NULL;
+                       WHERE user_id = $1 AND status = 'placed'
+                       ORDER BY id DESC
+                       LIMIT 1;
                       `;
 
   const queryParams = [userId];

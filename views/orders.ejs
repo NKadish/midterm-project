@@ -17,12 +17,10 @@
         <% for (let order of orders) { %>
           <% if (order.status === 'placed') { %>
           <ol>
-
-            <li><%= order.id%></li>
             <li><%= (Object.values(menuItems[order.id]))%></li>
-            <li>Total: <%= (Object.values(orderTotals[order.id]))%></li>
+            <li>Total: $<%= ((orderTotals[order.id]) / 100 )%></li>
             <li>Order Placed on <%= order.placed_at%></li>
-
+            <li>Ready in: countdown</li>
           </ol>
           <% } %>
         <% } %>
