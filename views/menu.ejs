@@ -3,6 +3,7 @@
   <head>
     <%- include('partials/_head') %>
     <title>Menu</title>
+    <link rel="stylesheet" href="/styles/menu.css" type="text/css"/>
     <script type="text/javascript" src="/scripts/menu.js"></script>
   </head>
 
@@ -14,20 +15,21 @@
     <h1>MENU</h1>
 
 
-
     <section id="menu-items">
       <% for(let items of data) { %>
-        <ol>
-          <li><%= items.name %></li>
-          <li><%= items.description %></li>
-          <li>$<%= items.cost / 100%> </li>
-          <li><img src="<%= items.picture_url %>" ></li>
-        </ol>
-        <form>
-          <input type="number" class="quantity" min="1" max="10" value="1">
-          <button class="addToCart" type="submit" value="<%= items.id %>">Add to Cart</button>
-        </form>
-      <% } %>
+        <ul class="item-list">
+          <li class="item-image"><img class="image" src="<%= items.picture_url %>" ></li>
+          <li class="item-name"><b><%= items.name %></b></li>
+          <li class="item-description"><%= items.description %></li>
+          <div class="item-footer">
+          <li class="item-cost">$<%= items.cost / 100%> </li>
+          <form>
+            <input type="number" class="quantity" min="1" max="10" value="1">
+            <button class="addToCart" type="submit" value="<%= items.id %>">Add to Cart</button>
+          </form>
+          </div>
+        </ul>
+          <% } %>
     </section>
   </body>
 
