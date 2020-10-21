@@ -1,34 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="stylesheet" href="/styles/main_page.css" type="text/css" />
     <%- include('partials/_head') %>
     <title>Home Page</title>
   </head>
 
-  <header>
+  <header class="header">
     <%- include('partials/_header') %>
   </header>
 
   <body>
-    <section class="welcome">
+    <section class="main-body">
+    <div class="welcome">
+        <h1>Welcome to our Restaurant!</h1>
+        <img class="main-img" src="https://adsofbrands.net/images/news/1/14912262363404.png" alt="Monpoloy">
+        <p>Visit our store for more details.</p>
+    </div>
+
+    <section class="about-us">
       <div>
-        <h1>Welcome to the restaurant!</h1>
+        <h2>About Us</h2>
+
       </div>
-      <div>
-        <img src="https://www.mcdonalds.com/is/image/content/dam/ca/nfl/web/nutrition/products/tile/en/mcdonalds-big-mac.jpg" alt="burger" style="width:700px;height:600px;">
+      <div class="about-us-msg">
+        <p>
+          This is our story.
+        </p>
       </div>
     </section>
-
-    <section class="most-popular">
-      <div>
-        <h4>HEY, here are some of our most popular dishes!</h4>
-
-      </div>
-      <div class="food">
-        <section id="popular-food">
-          show food items using query
-        </section>
-      </div>
     </section>
 
 </body>
