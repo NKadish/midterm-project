@@ -272,7 +272,7 @@ exports.updateOrderOnCheckout = updateOrderOnCheckout;
 // updates orders on pickup, adding the timestamp that the order was picked up at and setting status to f
 const updateOrderOnPickup =  function(orderId) {
   const queryString = `UPDATE order
-                       SET picked_up_at = GETDATE(), status = 'picked-up'
+                       SET picked_up_at = NOW(), status = 'picked up'
                        WHERE id = $1';
                       `;
 
@@ -373,59 +373,4 @@ const menuItemsMessage = function(arr) {
 }
 exports.menuItemsMessage = menuItemsMessage;
 
-const menuItemsArr = function(orders) {
-  let menuItems = {};
-  let currOrderID = 0;
-  for (let order of orders) {
-    if (currOrderID === order.id) {
-      menuItems[currOrderID].push(order.name);
-      menuItems[currOrderID].push(order.quantity)
-    } else {
-      costOfOrder = 0;
-      currOrderID = order.id;
-      menuItems[currOrderID] = [order.name, order.quantity];
-    }
-
-  }
-
-  return menuItems;
-}
-exports.menuItemsArr = menuItemsArr;
-
-const orderTotal = function(orders) {
-  let total = {};
-  let costOfOrder = 0;
-  let currOrderID = 0;
-  for (let order of orders) {
-    if (currOrderID === order.id) {
-      costOfOrder = order.quantity * order.cost
-      total[currOrderID] += costOfOrder
-    } else {
-      costOfOrder = 0;
-      currOrderID = order.id;
-      costOfOrder = order.quantity * order.cost
-      total[currOrderID] = costOfOrder
-    }
-  }
-  return total;
-}
-exports.orderTotal = orderTotal;
-
-const showItemsInEachOrder = function(userId) {
-  const queryString = `SELECT menu_items.name, carts.quantity, orders.id, menu_items.cost
-                       FROM orders
-                       JOIN carts ON orders.id = orders_id
-                       JOIN menu_items ON carts.menu_id = menu_items.id
-                       WHERE user_id = $1;
-                       `;
-
-  const queryParams = [userId];
-
-  return pool.query(queryString, queryParams)
-    .then(result => {
-      return result.rows;
-      }
-    );
-};
-exports.showItemsInEachOrder = showItemsInEachOrder;
 
