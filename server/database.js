@@ -270,13 +270,13 @@ const updateOrderOnCheckout =  function(userId) {
 exports.updateOrderOnCheckout = updateOrderOnCheckout;
 
 // updates orders on pickup, adding the timestamp that the order was picked up at and setting status to f
-const updateOrderOnPickup =  function(order) {
+const updateOrderOnPickup =  function(orderId) {
   const queryString = `UPDATE order
                        SET picked_up_at = GETDATE(), status = 'picked-up'
                        WHERE id = $1 AND status = 'active';
                       `;
 
-  const queryParams = [order.id];
+  const queryParams = [orderId];
 
   return pool.query(queryString, queryParams)
     .then(result => {
