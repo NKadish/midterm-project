@@ -13,7 +13,7 @@ module.exports = (db) => {
         let totalCost = 0;
         let timeToMake = 0;
         for (let item of order) {
-          totalCost += item.cost;
+          totalCost += (item.cost * item.quantity);
           if (item.time_to_make > timeToMake) {
             timeToMake = item.time_to_make;
           }

@@ -14,7 +14,7 @@
       <h1>Current orders</h1>
       <section class="pending-orders">
         <% for (let order of orders) { %>
-          <% if (order.status) { %>
+          <% if (order.status === 'placed') { %>
           <ol>
             <li><%= order.id%></li>
             <li>Total: <%= order.cost%></li>
@@ -30,7 +30,7 @@
     <h1>Previous orders</h1>
       <section class="prev-orders">
         <% for(let order of orders) { %>
-          <% if (!order.status) { %>
+          <% if (order.status === 'picked up') { %>
           <ol>
             <li>Click To Expand</li>
             <li>Total: <%= order.cost%></li>
