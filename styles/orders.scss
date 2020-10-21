@@ -1,5 +1,12 @@
-h1 {
+*, *:before, *:after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
 
+h1 {
+  display: flex;
+  justify-content: center;
 }
 
 
@@ -15,11 +22,12 @@ h1 {
 .each-item {
   display: flex;
   flex-direction: row;
-
   text-align: center;
   align-content: center;
-  margin-bottom: 1vw;
   width: 40%;
   border: 2px solid #545149;
+  box-sizing: border-box;
   padding: 0.25em;
+  background: linear-gradient( white, #c7ebff);
+  margin:auto;
 }
