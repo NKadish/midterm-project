@@ -15,14 +15,16 @@
       <section class="pending-orders">
 
         <% for (let order of orders) { %>
+          <div>
           <% if (order.status === 'placed') { %>
           <ol>
             <li><%= (Object.values(menuItems[order.id]))%></li>
             <li>Total: $<%= ((orderTotals[order.id]) / 100 )%></li>
             <li>Order Placed on <%= order.placed_at%></li>
-            <li>Ready in: countdown</li>
+            <li>Ready in: countdown?</li>
           </ol>
           <% } %>
+        </div>
         <% } %>
       </section>
     </div>
