@@ -1,5 +1,5 @@
 const express = require('express');
-const { showAllOrders, getUserFromCookie, showItemsFromOrders, updateOrderOnCheckout, newOrder, getPlacedOrderId, menuItemsMessage, getPhoneNumberFromId, longestMakeTimeFromOrder } = require('../server/database');
+const { showAllOrders, getUserFromCookie, showItemsFromOrders, updateOrderOnCheckout, newOrder, getPlacedOrderId, menuItemsMessage, getPhoneNumberFromId, longestMakeTimeFromOrder, showItemsInEachOrder, menuItemsArr, orderTotal } = require('../server/database');
 const router  = express.Router();
 const { sendText } = require('../api/twilio');
 
@@ -13,11 +13,20 @@ module.exports = (db) => {
       .then(dbUser => {
         return showAllOrders(dbUser.id)
         .then(orders => {
-          const templateVars = {
-            user: req.session.id,
-            orders
-          };
-          res.render("orders", templateVars);
+          return showItemsInEachOrder(req.session.id)
+          .then(menu => {
+            let menuItems = (menuItemsArr(menu))
+            let orderTotals = (orderTotal(menu))
+            console.log(orderTotals)
+            const templateVars = {
+              user: req.session.id,
+              orders,
+              menuItems,
+              orderTotals
+            };
+            res.render("orders", templateVars);
+          })
+
         })
         .catch(err => {
           res
@@ -56,7 +65,7 @@ module.exports = (db) => {
       // Text to Client with confirmation
       console.log(`Your order will be ready for pick up in ${orderTime} minutes!`, number.phone_number)
       //sendText(`Your order will be ready for pick up in ${orderTime} minutes!`, number.phone_number, 0);
-      //sendText(`Your order is ready for pick up!`, number.phone_number, orderTime, orderId);
+      //sendText(`Your order is ready for pick up!`, number.phone_number, orderTime);
       newOrder(userId);
       res.redirect("/orders");
       })

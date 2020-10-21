@@ -254,9 +254,9 @@ exports.removeItemFromCart = removeItemFromCart;
 // updates orders on checkout, adding the timestamp that the order was placed at
 const updateOrderOnCheckout =  function(userId) {
   const queryString = `UPDATE orders
-                       SET placed_at = NOW(), status = 'placed'
+                       SET placed_at = NOW()
                        WHERE user_id = $1
-                       AND status = 'active';
+                       AND status = true;
                       `;
 
   const queryParams = [userId];
@@ -270,13 +270,13 @@ const updateOrderOnCheckout =  function(userId) {
 exports.updateOrderOnCheckout = updateOrderOnCheckout;
 
 // updates orders on pickup, adding the timestamp that the order was picked up at and setting status to f
-const updateOrderOnPickup =  function(orderId) {
+const updateOrderOnPickup =  function(order) {
   const queryString = `UPDATE order
-                       SET picked_up_at = GETDATE(), status = 'picked-up'
-                       WHERE id = $1';
+                       SET picked_up_at = GETDATE(), status = false
+                       WHERE id = $1;
                       `;
 
-  const queryParams = [orderId];
+  const queryParams = [order.id];
 
   return pool.query(queryString, queryParams)
     .then(result => {
@@ -319,7 +319,7 @@ exports.getUserFromCookie = getUserFromCookie;
 const getActiveOrder =  function(userId, menuId, quantity) {
   const queryString = `SELECT *
                        FROM orders
-                       WHERE user_id = $1 AND status = 'active';
+                       WHERE user_id = $1 AND status = true AND placed_at IS NULL;
                       `;
   const queryParams = [userId];
   return pool.query(queryString, queryParams)
@@ -348,9 +348,7 @@ exports.getPhoneNumberFromId = getPhoneNumberFromId;
 // gets the id of an order that has been placed but not picked up yet
 const getPlacedOrderId =  function(userId) {
   const queryString = `SELECT id FROM orders
-                       WHERE user_id = $1 AND status = 'placed'
-                       ORDER BY id DESC
-                       LIMIT 1;
+                       WHERE user_id = $1 AND picked_up_at IS NULL;
                       `;
 
   const queryParams = [userId];
@@ -373,4 +371,59 @@ const menuItemsMessage = function(arr) {
 }
 exports.menuItemsMessage = menuItemsMessage;
 
+const menuItemsArr = function(orders) {
+  let menuItems = {};
+  let currOrderID = 0;
+  for (let order of orders) {
+    if (currOrderID === order.id) {
+      menuItems[currOrderID].push(order.name);
+      menuItems[currOrderID].push(order.quantity)
+    } else {
+      costOfOrder = 0;
+      currOrderID = order.id;
+      menuItems[currOrderID] = [order.name, order.quantity];
+    }
+
+  }
+
+  return menuItems;
+}
+exports.menuItemsArr = menuItemsArr;
+
+const orderTotal = function(orders) {
+  let total = {};
+  let costOfOrder = 0;
+  let currOrderID = 0;
+  for (let order of orders) {
+    if (currOrderID === order.id) {
+      costOfOrder = order.quantity * order.cost
+      total[currOrderID] += costOfOrder
+    } else {
+      costOfOrder = 0;
+      currOrderID = order.id;
+      costOfOrder = order.quantity * order.cost
+      total[currOrderID] = costOfOrder
+    }
+  }
+  return total;
+}
+exports.orderTotal = orderTotal;
+
+const showItemsInEachOrder = function(userId) {
+  const queryString = `SELECT menu_items.name, carts.quantity, orders.id, menu_items.cost
+                       FROM orders
+                       JOIN carts ON orders.id = orders_id
+                       JOIN menu_items ON carts.menu_id = menu_items.id
+                       WHERE user_id = $1;
+                       `;
+
+  const queryParams = [userId];
+
+  return pool.query(queryString, queryParams)
+    .then(result => {
+      return result.rows;
+      }
+    );
+};
+exports.showItemsInEachOrder = showItemsInEachOrder;
 

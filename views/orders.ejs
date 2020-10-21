@@ -13,11 +13,14 @@
     <div>
       <h1>Current orders</h1>
       <section class="pending-orders">
+
         <% for (let order of orders) { %>
           <% if (order.status === 'placed') { %>
           <ol>
+
             <li><%= order.id%></li>
-            <li>Total: <%= order.cost%></li>
+            <li><%= (Object.values(menuItems[order.id]))%></li>
+            <li>Total: <%= (Object.values(orderTotals[order.id]))%></li>
             <li>Order Placed on <%= order.placed_at%></li>
 
           </ol>
@@ -32,8 +35,8 @@
         <% for(let order of orders) { %>
           <% if (order.status === 'picked up') { %>
           <ol>
-            <li>Click To Expand</li>
-            <li>Total: <%= order.cost%></li>
+            <li><%= (Object.values(menuItems[order.id]))%></li>
+            <li>Total: $<%= ((orderTotals[order.id]) / 100 )%></li>
             <li>Order Placed on <%= order.placed_at%></li>
             <li>Completed on <%= order.picked_up_at%></li>
 
