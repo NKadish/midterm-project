@@ -17,6 +17,8 @@ VALUES('Big Wac', 'Our signature sandwhich! Warning: it might get messy! Comes w
 ('Tea', 'For when you need to relax', 169, 5, 'https://www.mcdonalds.com/is/image/content/dam/ca/nfl/web/nutrition/products/tile/en/mcdonalds-higgins-burke-orange-pekoe-tea.jpg'),
 ('Muffin', 'Our signature muffin!', 169, 5, 'https://www.mcdonalds.com/is/image/content/dam/ca/nfl/web/nutrition/products/tile/en/mcdonalds-blueberry-muffin.jpg'),
 ('Apple Pie', 'Our signature apple pies!', 129, 5, 'https://www.mcdonalds.com/is/image/content/dam/ca/nfl/web/nutrition/products/tile/en/mcdonalds-baked-apple-pie.jpg'),
-('WcFlurry', 'Some ice cream for your sweet tooth', 359, 5, 'https://www.mcdonalds.com/is/image/content/dam/ca/nfl/web/nutrition/products/tile/en/mcdonalds-oreo-mcflurry.jpg');
+('WcFlurry', 'Some ice cream for your sweet tooth', 359, 5, 'https://www.mcdonalds.com/is/image/content/dam/ca/nfl/web/nutrition/products/tile/en/mcdonalds-oreo-mcflurry.jpg'),
+('Chocolate Milkshake', 'The milk is shooketh', 359, 5, 'https://www.mcdonalds.com/is/image/content/dam/ca/nfl/web/nutrition/products/tile/en/mcdonalds-chocolate-milkshake.jpg?');
+
 
 

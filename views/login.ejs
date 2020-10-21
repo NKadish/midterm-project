@@ -4,29 +4,29 @@
     <meta charset="utf-8">
     <%- include('partials/_head') %>
     <title>Login</title>
+    <link rel="stylesheet" href="/styles/login.css" type="text/css"/>
   </head>
   <header>
     <%- include('partials/_header') %>
   </header>
 
   <body>
-  <main>
-      <h3>Please Login</h3>
+    <main>
+    <section class="main-body">
+      <h1>Please Login</h1>
       <form class="form-inline" action="/login" method="POST">
-        <div class="form">
+        <div class="login-form">
           <label for="email">E-mail Address:</label>
-          <input class="form-control" type="email" name="email" placeholder="E-mail" style="width: 300px; margin: 1em">
+          <input class="form-control" type="email" name="email" placeholder="E-mail">
           <label for="password">Password:</label>
-          <input class="form-control" type="password" name="password" style="width: 300px; margin: 1em">
+          <input class="form-control" type="password" name="password">
           <button type="submit" class="btn btn-primary">Login</button>
         </div>
       </form>
+    </section>
     </main>
   </body>
 
-   <!-- Bootstrap JS -->
- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRv+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7umd/popper.min.js"integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4s86dIHNDz0W1" crossorigin="anonymous"></script>
- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/jsbootstrap.min.js"integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFfnJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 
 </html>
