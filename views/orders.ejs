@@ -23,7 +23,8 @@
             <strong>Total:</strong> $<%= ((orderTotals[order.id]) / 100 )%><br/></p>
             <p><strong>Order Placed on</strong> <%= order.placed_at.toLocaleString('en-US', {timeZone: 'Canada/Eastern'})%><br />
               <br />
-            <strong>Ready in:</strong> countdown?<br /></p>
+            <strong>Ready in:</strong> <span id="timer"> <%= timeToMake %> Mins
+            </span><br /></span>
           </div>
           <% } %>
         <% } %>

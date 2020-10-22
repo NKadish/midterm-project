@@ -1,5 +1,5 @@
 const express = require('express');
-const { showAllOrders, getUserFromCookie, showItemsFromOrders, updateOrderOnCheckout, newOrder, getPlacedOrderId, menuItemsMessage, getPhoneNumberFromId, longestMakeTimeFromOrder, showItemsInEachOrder, menuItemsArr, orderTotal } = require('../server/database');
+const { showAllOrders, getUserFromCookie, showItemsFromOrders, updateOrderOnCheckout, newOrder, getPlacedOrderId, menuItemsMessage, getPhoneNumberFromId, longestMakeTimeFromOrder, showItemsInEachOrder, menuItemsArr, orderTotal, getTimeForOrder } = require('../server/database');
 const router  = express.Router();
 const { sendText } = require('../api/twilio');
 
@@ -17,12 +17,14 @@ module.exports = (db) => {
           .then(menu => {
             let menuItems = (menuItemsArr(menu))
             let orderTotals = (orderTotal(menu))
-            console.log(menuItems)
+            let timeToMake = (getTimeForOrder(menu))
+
             const templateVars = {
               user: req.session.id,
               orders,
               menuItems,
-              orderTotals
+              orderTotals,
+              timeToMake
             };
             res.render("orders", templateVars);
           })
