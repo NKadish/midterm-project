@@ -5,104 +5,80 @@ const { sendText } = require('../api/twilio');
 
 module.exports = (db) => {
 
+  /////////// GET request to Orders page
   router.get("/", (req, res) => {
+    const userId = req.session.id;
     let orders;
-    if (!getUserFromCookie(req.session.id)){
+    // If user is not logged in, redirect to login page
+    if (!getUserFromCookie(userId)) {
       return res.redirect("./login");
     } else {
-      return getUserFromCookie(req.session.id)
-    .then(dbUser => {
-      return showAllOrders(dbUser.id)
-    })
-    .then(order => {
-      orders = order;
-      return showItemsInEachOrder(req.session.id)
-    })
-    .then(menu => {
-      let menuItems = (menuItemsArr(menu));
-      let orderTotals = (orderTotal(menu));
+      return getUserFromCookie(userId)
+        .then(dbUser => {
+          return showAllOrders(dbUser.id);
+        })
+        .then(order => {
+          orders = order;
+          return showItemsInEachOrder(userId);
+        })
+        .then(menu => {
+          let menuItems = (menuItemsArr(menu));
+          let orderTotals = (orderTotal(menu));
+          const templateVars = {
+            user: userId,
+            orders,
+            menuItems,
+            orderTotals,
+          };
+          res.render("orders", templateVars);
+        })
+        .catch(err => {
+          res
+            .status(500)
+            .json({ error: err.message });
+        });
+    }
+  });
 
-      const templateVars = {
-        user: req.session.id,
-        orders,
-        menuItems,
-        orderTotals,
-      };
-      res.render("orders", templateVars)
-    })
-    .catch(err => {
-      res
-        .status(500)
-        .json({ error: err.message });
-    })
-  }});
-
+  //////////// POST request to Orders page to place an order
   router.post('/', (req, res) => {
     const userId = req.session.id;
     let orderId;
     let orderTime;
     return updateOrderOnCheckout(userId)
-    .then(() =>{
-      return getPlacedOrderId(userId)
-    })
-    .then(order => {
-      orderId = order.id;
-      return showItemsFromOrders(orderId)
-    })
-    .then(menuItems => {
-      let restaurantNum = 6139228549;
-      let menuItemString = menuItemsMessage(menuItems);
-      // Text to Restaurant with order
-      console.log(menuItemString, `+1${restaurantNum}`);
-      //sendText(menuItemString, `+1${restaurantNum}`, 0);
-      return longestMakeTimeFromOrder(orderId)
-    })
-    .then(time => {
-      orderTime = (time.max);
-      return getPhoneNumberFromId(userId)
-    })
-    .then(number =>{
-      // Text to Client with confirmation
-      console.log(`Your order will be ready for pick up in ${orderTime} minutes!`, number.phone_number)
-      //sendText(`Your order will be ready for pick up in ${orderTime} minutes!`, number.phone_number, 0);
-      //sendText(`Your order is ready for pick up!`, number.phone_number, orderTime);
-      newOrder(userId);
-      res.redirect("/orders");
+      .then(() =>{
+        return getPlacedOrderId(userId);
       })
-    .catch(err => {
-      console.log(err);
-    })
+      .then(order => {
+        orderId = order.id;
+        return showItemsFromOrders(orderId);
+      })
+      .then(menuItems => {
+        let restaurantNum = 6139228549;
+        let menuItemString = menuItemsMessage(menuItems);
+
+        // Text to Restaurant with order
+        console.log(menuItemString, `+1${restaurantNum}`);
+        //sendText(menuItemString, `+1${restaurantNum}`, 0);
+        return longestMakeTimeFromOrder(orderId);
+      })
+      .then(time => {
+        orderTime = (time.max);
+        return getPhoneNumberFromId(userId);
+      })
+      .then(number =>{
+        // Text to Client with confirmation
+        console.log(`Your order will be ready for pick up in ${orderTime} minutes!`, number.  phone_number);
+        //sendText(`Your order will be ready for pick up in ${orderTime} minutes!`, number. phone_number, 0);
+        // Text to Client once order is ready
+        //sendText(`Your order is ready for pick up!`, number.phone_number, orderTime);
+        newOrder(userId);
+        res.redirect("/orders");
+      })
+      .catch(err => {
+        console.log(err);
+      });
   });
 
   return router;
 };
-
-// router.post('/', (req, res) => {
-//   const userId = req.session.id;
-//   return updateOrderOnCheckout(userId)
-//   .then(() =>{
-//     return getPlacedOrderId(userId)
-//     .then(orderId => {
-//       return showItemsFromOrders(orderId.id)
-//       .then(menuItems => {
-//         let restaurantNum = 6139228549;
-//         let menuItemString = menuItemsMessage(menuItems);
-//         // Text to Restaurant with order
-//         console.log(menuItemString, `+1${restaurantNum}`);
-//         //sendText(menuItemString, `+1${restaurantNum}`);
-//         return longestMakeTimeFromOrder(orderId)
-//         .then(time => {
-//           let orderTime = (time.max);
-//           return getPhoneNumberFromId(userId)
-//           .then(number =>{
-//             // Text to Client with confirmation
-//             console.log(`Your order will be ready for pick up in ${orderTime} minutes!`, number.phone_number)
-//             //sendText(`Your order will be ready for pick up in ${orderTime} minutes!`, number.phone_number);
-//             newOrder(userId);
-//             res.redirect("/orders");
-//           })
-//         })
-//       })
-//     })
-//   })
-// });
