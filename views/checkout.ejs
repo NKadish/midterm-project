@@ -31,9 +31,11 @@
       <p>TOTAL: $<%= totalCost %> </p>
     </div>
     <div>
+      <% if (order[0]) { %>
       <form method="POST" action='/orders'>
         <button id="placeOrder" type="submit" class="btn btn-info"> PLACE ORDER </button>
       </form>
+      <% } %>
     </div>
 
   </body>
