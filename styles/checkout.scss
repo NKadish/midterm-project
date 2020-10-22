@@ -14,7 +14,7 @@ h1 {
   align-items: center;
   justify-content: space-around;
   align-content: center;
-  margin: 1em 5em 1em 5em;
+  margin: 0.5em 5em 1em 5em;
   border-bottom: 2px solid;
   list-style-type: none;
   font-family: Tahoma;
@@ -32,22 +32,23 @@ h1 {
     width: 25%;
   }
 
+  .item-img {
+    height: 15vw;
+    width: 15vw;
+    border-radius: 100%;
+    margin-bottom: 1em;
+  }
+
   button{
     background-color: #c7ebff;
     color: black;
     margin-top: 10px;
 
-    :hover {
-      color: #c7ebff;
-      background-color: #FFFFFF;
+    &:hover {
+      color: white;
+      background-color: red;
     }
   }
-}
-
-img {
-  height: 15vw;
-  width: 15vw;
-  border-radius: 100%;
 }
 
 .total-order {
@@ -65,8 +66,8 @@ img {
   background-color:  #3995db;
   font-size: 1.5em;
 
-  :hover {
-    color: #c7ebff;
-    background-color: #FFFFFF;
+  &:hover {
+    color: black;
+    background-color: #c7ebff;
   }
 }
