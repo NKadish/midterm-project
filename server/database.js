@@ -221,7 +221,7 @@ exports.updateOrderOnCheckout = updateOrderOnCheckout;
 const updateOrderOnPickup =  function(orderId) {
   const queryString = `UPDATE orders
                        SET picked_up_at = NOW(), status = 'picked up'
-                       WHERE id = $1';
+                       WHERE id = $1;
                       `;
 
   const queryParams = [orderId];
