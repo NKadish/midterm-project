@@ -10,11 +10,8 @@
   <header>
     <%- include('partials/_header') %>
   </header>
-
   <body>
     <h1>MENU</h1>
-
-
     <section id="menu-items">
       <% for(let items of data) { %>
         <ul class="item-list">
@@ -24,9 +21,11 @@
           <div class="item-footer">
           <li class="item-cost"><b>$<%= items.cost / 100%></b> </li>
           <form>
+            <% if (user) { %>
             <input type="number" class="quantity" min="1" max="10" value="1">
             <button class="addToCart btn" type="submit" value="<%= items.id %>">Add to Cart</button>
             <div class="added-popup"></div>
+            <% } %>
           </form>
           </div>
         </ul>
