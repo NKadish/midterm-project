@@ -6,36 +6,36 @@ const { sendText } = require('../api/twilio');
 module.exports = (db) => {
 
   router.get("/", (req, res) => {
+    let orders;
     if (!getUserFromCookie(req.session.id)){
       return res.redirect("./login");
     } else {
       return getUserFromCookie(req.session.id)
-      .then(dbUser => {
-        return showAllOrders(dbUser.id)
-        .then(orders => {
-          return showItemsInEachOrder(req.session.id)
-          .then(menu => {
-            let menuItems = (menuItemsArr(menu))
-            let orderTotals = (orderTotal(menu))
-            console.log(orders);
-            const templateVars = {
-              user: req.session.id,
-              orders,
-              menuItems,
-              orderTotals,
-            };
-            res.render("orders", templateVars);
-          })
+    .then(dbUser => {
+      return showAllOrders(dbUser.id)
+    })
+    .then(order => {
+      orders = order;
+      return showItemsInEachOrder(req.session.id)
+    })
+    .then(menu => {
+      let menuItems = (menuItemsArr(menu));
+      let orderTotals = (orderTotal(menu));
 
-        })
-        .catch(err => {
-          res
-            .status(500)
-            .json({ error: err.message });
-        })
-      })
-    }
-  });
+      const templateVars = {
+        user: req.session.id,
+        orders,
+        menuItems,
+        orderTotals,
+      };
+      res.render("orders", templateVars)
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    })
+  }});
 
   router.post('/', (req, res) => {
     const userId = req.session.id;
