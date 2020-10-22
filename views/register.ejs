@@ -13,6 +13,9 @@
   <main>
   <section class="main-body">
   <h1> Create A New Account</h1>
+  <% if (error) { %>
+    <b><%= error  %></b>
+  <% } %>
   <div class="register-form">
     <p></p>
     <form class="form" method="POST" action='/register'>
