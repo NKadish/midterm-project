@@ -1,3 +1,7 @@
+$lightblue: #c7ebff;
+$blue: #3995db;
+
+
 *, *:before, *:after {
   box-sizing: inherit;
   margin: 0;
@@ -13,27 +17,42 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  margin-left: 0.5em;
+  align-content: center;
+  margin: 0.5em 5em 1em 5em;
   border-bottom: 2px solid;
   list-style-type: none;
   font-family: Tahoma;
   font-size: 1.3em;
+
+  li {
+    width: 20%;
+  }
+
+  .quantity {
+    width: 10%;
+  }
+
+  .item-name {
+    width: 25%;
+  }
+
+  .item-img {
+    height: 15vw;
+    width: 15vw;
+    border-radius: 100%;
+    margin-bottom: 1em;
+  }
+
   button{
-    background-color: #c7ebff;
+    background-color: $lightblue;
     color: black;
     margin-top: 10px;
 
-    :hover {
-      color: #c7ebff;
-      background-color: #FFFFFF;
+    &:hover {
+      color: white;
+      background-color: red;
     }
   }
-}
-
-img {
-  height: 15vw;
-  width: 15vw;
-  border-radius: 100%;
 }
 
 .total-order {
@@ -45,14 +64,14 @@ img {
 
 #placeOrder {
   float: right;
-  margin-right: 13vw;
+  margin: 0 13vw 5vw 0;
   width: fit-content;
   height: fit-content;
-  background-color:  #3995db;
+  background-color:  $blue;
   font-size: 1.5em;
 
-  :hover {
-    color: #c7ebff;
-    background-color: #FFFFFF;
+  &:hover {
+    color: black;
+    background-color: $lightblue;
   }
 }

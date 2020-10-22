@@ -1,3 +1,5 @@
+$blue: #c7ebff;
+
 *, *:before, *:after {
   box-sizing: inherit;
   margin: 0;
@@ -5,44 +7,44 @@
 }
 
 body {
-  background-color: #c7ebff !important;
+  background-color: $blue !important;
 }
 
 .main-body {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
 
-.register-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 50%;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  width: 75%;
-
-  div {
+  .register-form {
     display: flex;
     flex-direction: column;
-    margin-bottom: 1em;
-  }
+    align-items: center;
+    width: 50%;
 
-  input.form-control{
-    width: 35vw;
-    margin: 0.5em 0 0.5em 0;
-  }
+    .form {
+      display: flex;
+      flex-direction: column;
+      align-items: left;
+      width: 75%;
 
-  button {
-    width: 35vw;
-  }
+      div {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1em;
+      }
 
-  h7 {
-    font-weight: bold;
+      input.form-control{
+        width: 35vw;
+        margin: 0.5em 0 0.5em 0;
+      }
+
+      button {
+        width: 35vw;
+      }
+
+      h7 {
+        font-weight: bold;
+      }
+    }
   }
 }

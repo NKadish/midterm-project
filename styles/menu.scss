@@ -1,7 +1,4 @@
-
-body{
-  background-color: white;
-}
+$blue: #3995db;
 
 h1 {
   display:flex;
@@ -13,52 +10,53 @@ h1 {
   flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
-}
 
-.item-list{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  list-style-type: none;
-  width: 40vw;
-  margin: 3em;
-  flex-grow: 1;
-  button {
-    background-color:  #3995db;
-    color: white;
-    :hover {
-      color: #3995db;
-      background-color: white;
+  .item-list{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    list-style-type: none;
+    width: 40vw;
+    margin: 3em;
+    flex-grow: 1;
+    button {
+      background-color:  $blue;
+      color: white;
+      &:hover {
+        color: $blue;
+        background-color: white;
+        border: 1px solid $blue;
+      }
     }
   }
-}
 
-.item-name {
-  margin: 1em;
-}
+  .image{
+    border-radius: 100%;
+  }
 
-.item-description{
-  display:flex;
-  justify-content: center;
-  width: 75%;
-}
+  .item-name {
+    margin: 1em;
+  }
 
-.image{
-  border-radius: 100%;
-}
+  .item-description{
+    display:flex;
+    justify-content: center;
+    width: 75%;
+  }
 
-.item-footer{
-  display:flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  width: 60%;
-  margin: 0.5em 0 0 0;
-}
+  .item-footer{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 60%;
+    margin: 0.5em 0 0 0;
+  }
 
-.item-cost {
-  display: flex;
-  justify-content: center;
+  .item-cost {
+    display: flex;
+    justify-content: center;
+  }
 }
 
 @media only screen and (max-width: 767px) {

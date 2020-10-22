@@ -1,30 +1,31 @@
 $navBarColor: #3995db;
+$lightblue: #c7ebff;
 
 #nav-bar {
   background-color: $navBarColor !important;
-}
 
-.login {
-  display: flex;
-  justify-content: flex-end;
-  align-self: center;
-  margin-top: 0.5em;
+  .login {
+    display: flex;
+    justify-content: flex-end;
+    align-self: center;
+    margin-top: 0.5em;
 
-  form{
-    margin: 0 0.3em 0 0.3em;
-  }
+    form{
+      margin: 0 0.3em 0 0.3em;
+    }
 
-  button {
-    background-color: $navBarColor;
-    border: none;
+    button {
+      background-color: $navBarColor;
+      border: none;
 
-    &:hover{
-      background-color: #c7ebff;
-      color:black;
+      &:hover{
+        background-color: $lightblue;
+        color:black;
+      }
     }
   }
-}
 
-ul[class="navbar-nav mr-auto mt-2 mt-lg-0"]{
-  margin-top: 0 !important;
+  ul[class="navbar-nav mr-auto mt-2 mt-lg-0"]{
+    margin-top: 0 !important;
+  }
 }
