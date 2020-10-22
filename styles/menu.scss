@@ -18,6 +18,14 @@ body{
   width: 40vw;
   margin: 3em;
   flex-grow: 1;
+  button {
+    background-color:  #3995db;
+    color: white;
+    :hover {
+      color: #3995db;
+      background-color: white;
+    }
+  }
 }
 
 .item-name {
@@ -40,3 +48,4 @@ body{
   width: 60%;
   margin: 0.5em 0 0 0;
 }
+
