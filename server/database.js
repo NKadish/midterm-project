@@ -412,7 +412,7 @@ const orderTotal = function(orders) {
 exports.orderTotal = orderTotal;
 
 const showItemsInEachOrder = function(userId) {
-  const queryString = `SELECT menu_items.name, carts.quantity, orders.id, menu_items.cost
+  const queryString = `SELECT menu_items.name, carts.quantity, orders.id, menu_items.cost, menu_items.time_to_make, orders.status
                        FROM orders
                        JOIN carts ON orders.id = orders_id
                        JOIN menu_items ON carts.menu_id = menu_items.id
@@ -428,3 +428,33 @@ const showItemsInEachOrder = function(userId) {
     );
 };
 exports.showItemsInEachOrder = showItemsInEachOrder;
+
+const getTimeForCountdown = function(order) {
+  let timeToMake = 0;
+  for (let item of order) {
+    let orderTime = item.time_to_make;
+    if (item.status === "placed") {
+      if (timeToMake < orderTime) {
+        timeToMake = orderTime;
+      }
+    }
+  }
+  return timeToMake;
+}
+exports.getTimeForCountdown = getTimeForCountdown;
+
+// const countdownTimer = function(timeInMins) {
+//   let countdown = timeInMins * 60000;
+//   let timerName = setInterval(function() {
+//     while (countdown > 0) {
+//       countdown - 1000;
+//       let minutes = Math.floor((countdown % (1000 * 60 * 60)) / (1000 * 60));
+//       let seconds = Math.floor((countdown % (1000 * 60)) / 1000);
+
+//     }
+
+//     if (countdown < 0) {
+//       clearInterval(timerName);
+//     }
+//   })
+// }

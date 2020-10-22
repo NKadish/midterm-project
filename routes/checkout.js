@@ -19,7 +19,12 @@ module.exports = (db) => {
           }
         };
         totalCost = Math.round(totalCost) / 100;
-        const templateVars = { user : req.session.id, order , totalCost, timeToMake};
+        const templateVars = {
+          user: req.session.id,
+          order ,
+          totalCost,
+          timeToMake
+        };
         res.render("checkout", templateVars);
       })
       .catch(err => {
