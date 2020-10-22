@@ -1,3 +1,7 @@
+$lightblue: #c7ebff;
+$blue: #3995db;
+
+
 *, *:before, *:after {
   box-sizing: inherit;
   margin: 0;
@@ -40,7 +44,7 @@ h1 {
   }
 
   button{
-    background-color: #c7ebff;
+    background-color: $lightblue;
     color: black;
     margin-top: 10px;
 
@@ -63,11 +67,11 @@ h1 {
   margin: 0 13vw 5vw 0;
   width: fit-content;
   height: fit-content;
-  background-color:  #3995db;
+  background-color:  $blue;
   font-size: 1.5em;
 
   &:hover {
     color: black;
-    background-color: #c7ebff;
+    background-color: $lightblue;
   }
 }
