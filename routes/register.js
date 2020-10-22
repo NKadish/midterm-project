@@ -9,7 +9,11 @@ module.exports = (db) => {
     if (getUserFromCookie(req.session.id)) {
       res.redirect("/");
     } else {
-      const templateVars = { user: req.session.id, error: null };
+      const templateVars = {
+        user: req.session.id,
+        error: null
+      };
+
       res.render("register", templateVars);
     }
   });
@@ -25,32 +29,29 @@ module.exports = (db) => {
       password
     };
     const templateVars = { user: req.session.id, error: '' };
-    console.log("name:", name, "Email: ", email, phone_number, password);
+
+    // Checks if any input fields are empty
     if (!name || !email || !phone_number || !password) {
-      templateVars.error = 'Please input all forms!'
+      templateVars.error = 'Please input all forms!';
       res.render('register', templateVars);
     } else {
       return getUserWithEmail(email)
-      .then(checkUser => {
-        if (checkUser) {
-          templateVars.error = 'That email already is registered! Please try again!'
-          res.render('register', templateVars);
-        } else {
-          return register(newUser)
-          .then(user => {
-          req.session.id = user.id;
-          newOrder(user.id);
-          res.redirect("/");
-          });
-        }
-      });
+        .then(checkUser => {
+
+          // Checks if e-mail is already in use
+          if (checkUser) {
+            templateVars.error = 'That email already is registered! Please try again!';
+            res.render('register', templateVars);
+          } else {
+            return register(newUser)
+              .then(user => {
+                req.session.id = user.id;
+                newOrder(user.id);
+                res.redirect("/");
+              });
+          }
+        });
     }
   });
-
-
-
-
-
-
   return router;
 };
