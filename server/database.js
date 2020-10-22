@@ -429,7 +429,7 @@ const showItemsInEachOrder = function(userId) {
 };
 exports.showItemsInEachOrder = showItemsInEachOrder;
 
-const getTimeForCountdown = function(order) {
+const getTimeForOrder = function(order) {
   let timeToMake = 0;
   for (let item of order) {
     let orderTime = item.time_to_make;
@@ -441,20 +441,4 @@ const getTimeForCountdown = function(order) {
   }
   return timeToMake;
 }
-exports.getTimeForCountdown = getTimeForCountdown;
-
-// const countdownTimer = function(timeInMins) {
-//   let countdown = timeInMins * 60000;
-//   let timerName = setInterval(function() {
-//     while (countdown > 0) {
-//       countdown - 1000;
-//       let minutes = Math.floor((countdown % (1000 * 60 * 60)) / (1000 * 60));
-//       let seconds = Math.floor((countdown % (1000 * 60)) / 1000);
-
-//     }
-
-//     if (countdown < 0) {
-//       clearInterval(timerName);
-//     }
-//   })
-// }
+exports.getTimeForOrder = getTimeForOrder;

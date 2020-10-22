@@ -20,7 +20,7 @@
             <span><%= (Object.values(menuItems[order.id]))%><br />
             <strong>Total:</strong> $<%= ((orderTotals[order.id]) / 100 )%><br/></span>
             <span><strong>Order Placed on</strong> <%= order.placed_at.toLocaleString('en-US', {timeZone: 'Canada/Eastern'})%><br />
-            <strong>Ready in:</strong> <span id="timer">
+            <strong>Ready in:</strong> <span id="timer"> <%= timeToMake %> Mins
             </span><br /></span>
           </div>
           <% } %>
