@@ -17,37 +17,43 @@
         <% for (let order of orders) { %>
           <% if (order.status === 'placed') { %>
             <div class="each-item">
-            <p><% for(let item of (Object.values(menuItems[order.id]))) { %>
+            <div class="order-list">
+            <p class="item-list"><% for(let item of (Object.values(menuItems[order.id]))) { %>
               🍔<%- item %><br />
-            <%}%><br />
-            <strong>Total:</strong> $<%= ((orderTotals[order.id]) / 100 )%><br/></p>
-            <p><strong>Order Placed on</strong> <%= order.placed_at.toLocaleString('en-US', {timeZone: 'Canada/Eastern'})%><br />
-              <br />
-            <strong>Ready in:</strong> <span id="timer"> <%= order.maketime %> Mins
-            </span><br /></span>
+            <%}%><br /></p>
+            <p class="total"><strong>Total:</strong> $<%= ((orderTotals[order.id]) / 100 )%><br/></p>
+            </div>
+            <div class="order-info">
+            <p class="placed-on"><strong>Order Placed on</strong><br /> <%= order.placed_at.toLocaleString('en-US', {timeZone: 'Canada/Eastern'})%></p>
+              <span class="timer"><strong>Ready in:</strong><br /> <%= order.maketime %> Mins
+            </span>
           </div>
+        </div>
           <% } %>
         <% } %>
       </section>
     </div>
     <div>
     <h1>Previous orders</h1>
-      <section class="pending-orders">
+    <section class="previous-orders">
         <% for(let order of orders) { %>
           <% if (order.status === 'picked up') { %>
             <div class="each-item">
-              <p><% for(let item of (Object.values(menuItems[order.id]))) { %>
+              <div class="order-list">
+              <p class="item-list"><% for(let item of (Object.values(menuItems[order.id]))) { %>
                 &#127860;<%- item %><br />
-                <%}%><br />
-              <strong>Total:</strong> $<%= ((orderTotals[order.id]) / 100 )%><br/></p>
-              <p><strong>Order Placed on</strong> <%= order.placed_at.toLocaleString('en-US', {timeZone: 'Canada/Eastern'})%><br />
-                <br />
-              <strong>Completed on:</strong> <%=order.picked_up_at.toLocaleString('en-US', {timeZone: 'Canada/Eastern'})%><br /></p>
+                <%}%><br /></p>
+              <p class="total"><strong>Total:</strong> $<%= ((orderTotals[order.id]) / 100 )%><br/></p>
+              </div>
+              <div class="order-info">
+              <p class="placed-on"><strong>Order Placed on</strong><br /> <%= order.placed_at.toLocaleString('en-US', {timeZone: 'Canada/Eastern'})%></p>
+              <span class="timer"><strong>Completed on:</strong><br /> <%=order.picked_up_at.toLocaleString('en-US', {timeZone: 'Canada/Eastern'})%><br /></span>
 
+            </div>
+            </div>
             <% } %>
-          </div>
           <% } %>
-      </section>
+    </section>
     </div>
   </body>
 </html>
