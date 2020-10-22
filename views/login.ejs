@@ -21,6 +21,9 @@
           <label for="password">Password:</label>
           <input class="form-control" type="password" name="password">
           <button type="submit" class="btn btn-primary">Login</button>
+          <% if (error) { %>
+            <b><%= error  %></b>
+          <% } %>
         </div>
       </form>
     </section>
