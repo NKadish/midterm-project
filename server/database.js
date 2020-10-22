@@ -219,7 +219,7 @@ exports.updateOrderOnCheckout = updateOrderOnCheckout;
 
 // updates orders on pickup, adding the timestamp that the order was picked up at and setting status to f
 const updateOrderOnPickup =  function(orderId) {
-  const queryString = `UPDATE order
+  const queryString = `UPDATE orders
                        SET picked_up_at = NOW(), status = 'picked up'
                        WHERE id = $1';
                       `;
