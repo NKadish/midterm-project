@@ -13,19 +13,18 @@
 
   <body>
     <h1>Checkout</h1>
-    <div>
       <section class="cart-items">
         <% for(let items of order) { %>
           <ul class="cart">
             <li><img src="<%= items.picture_url %>" ></li>
-            <li><%= items.name %></li>
-            <li>x<%= items.quantity %></li>
+            <li class="item-name"><%= items.name %></li>
+            <li class="quantity">x<%= items.quantity %></li>
             <li>$<%= ((items.cost * items.quantity) / 100).toFixed(2)%> </li>
             <button class="removeFromCart btn" type="submit" value="<%= items.id %>"> Remove Item</button>
           </ul>
         <% } %>
       </section>
-    </div>
+    <section class="footer">
     <div class="total-order">
       <p>Estimated wait time: <%= timeToMake %> minutes</p>
       <p>TOTAL: $<%= totalCost %> </p>
@@ -37,6 +36,7 @@
       </form>
       <% } %>
     </div>
+    </section>
 
   </body>
 </html>

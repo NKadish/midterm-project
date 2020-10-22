@@ -13,11 +13,25 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  margin-left: 0.5em;
+  align-content: center;
+  margin: 1em 5em 1em 5em;
   border-bottom: 2px solid;
   list-style-type: none;
   font-family: Tahoma;
   font-size: 1.3em;
+
+  li {
+    width: 20%;
+  }
+
+  .quantity {
+    width: 10%;
+  }
+
+  .item-name {
+    width: 25%;
+  }
+
   button{
     background-color: #c7ebff;
     color: black;
@@ -45,7 +59,7 @@ img {
 
 #placeOrder {
   float: right;
-  margin-right: 13vw;
+  margin: 0 13vw 5vw 0;
   width: fit-content;
   height: fit-content;
   background-color:  #3995db;
