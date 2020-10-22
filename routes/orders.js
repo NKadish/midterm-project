@@ -58,8 +58,8 @@ module.exports = (db) => {
         let menuItemString = menuItemsMessage(menuItems);
 
         // Text to Restaurant with order
-        console.log(menuItemString, `+1${restaurantNum}`);
-        //sendText(menuItemString, `+1${restaurantNum}`, 0);
+        sendText(menuItemString, `+1${restaurantNum}`, 0);
+        // console.log(menuItemString, `+1${restaurantNum}`);
         return longestMakeTimeFromOrder(orderId);
       })
       .then(time => {
@@ -68,10 +68,11 @@ module.exports = (db) => {
       })
       .then(number =>{
         // Text to Client with confirmation
-        console.log(`Your order will be ready for pick up in ${orderTime} minutes!`, number.  phone_number);
-        //sendText(`Your order will be ready for pick up in ${orderTime} minutes!`, number. phone_number, 0);
+        sendText(`Your order will be ready for pick up in ${orderTime} minutes!`, number.phone_number, 0);
+        // console.log(`Your order will be ready for pick up in ${orderTime} minutes!`, number.phone_number);
+
         // Text to Client once order is ready
-        //sendText(`Your order is ready for pick up!`, number.phone_number, orderTime, orderId);
+        sendText(`Your order is ready for pick up!`, number.phone_number, orderTime, orderId);
         newOrder(userId);
         res.redirect("/orders");
       })
