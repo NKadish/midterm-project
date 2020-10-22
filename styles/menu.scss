@@ -38,6 +38,8 @@ h1 {
 }
 
 .item-description{
+  display:flex;
+  justify-content: center;
   width: 75%;
 }
 
@@ -48,10 +50,15 @@ h1 {
 .item-footer{
   display:flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   width: 60%;
   margin: 0.5em 0 0 0;
+}
+
+.item-cost {
+  display: flex;
+  justify-content: center;
 }
 
 @media only screen and (max-width: 767px) {
