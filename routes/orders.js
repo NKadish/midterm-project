@@ -71,7 +71,7 @@ module.exports = (db) => {
         console.log(`Your order will be ready for pick up in ${orderTime} minutes!`, number.  phone_number);
         //sendText(`Your order will be ready for pick up in ${orderTime} minutes!`, number. phone_number, 0);
         // Text to Client once order is ready
-        //sendText(`Your order is ready for pick up!`, number.phone_number, orderTime);
+        //sendText(`Your order is ready for pick up!`, number.phone_number, orderTime, orderId);
         newOrder(userId);
         res.redirect("/orders");
       })
