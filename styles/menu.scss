@@ -3,6 +3,11 @@ body{
   background-color: white;
 }
 
+h1 {
+  display:flex;
+  justify-content: center;
+}
+
 #menu-items{
   display: flex;
   flex-direction: row;
@@ -18,6 +23,14 @@ body{
   width: 40vw;
   margin: 3em;
   flex-grow: 1;
+  button {
+    background-color:  #3995db;
+    color: white;
+    :hover {
+      color: #3995db;
+      background-color: white;
+    }
+  }
 }
 
 .item-name {
@@ -39,4 +52,12 @@ body{
   align-items: center;
   width: 60%;
   margin: 0.5em 0 0 0;
+}
+
+@media only screen and (max-width: 767px) {
+  .image{
+    height: 40vw;
+    width: 40vw;
+  }
+
 }

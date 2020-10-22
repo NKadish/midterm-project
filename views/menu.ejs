@@ -22,10 +22,11 @@
           <li class="item-name"><b><%= items.name %></b></li>
           <li class="item-description"><%= items.description %></li>
           <div class="item-footer">
-          <li class="item-cost">$<%= items.cost / 100%> </li>
+          <li class="item-cost"><b>$<%= items.cost / 100%></b> </li>
           <form>
             <input type="number" class="quantity" min="1" max="10" value="1">
-            <button class="addToCart" type="submit" value="<%= items.id %>">Add to Cart</button>
+            <button class="addToCart btn" type="submit" value="<%= items.id %>">Add to Cart</button>
+            <div class="added-popup"></div>
           </form>
           </div>
         </ul>
