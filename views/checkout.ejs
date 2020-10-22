@@ -4,6 +4,7 @@
     <%- include('partials/_head') %>
     <title>Checkout</title>
     <script type="text/javascript" src="/scripts/checkout.js"></script>
+    <link rel="stylesheet" href="/styles/checkout.css" type="text/css" />
   </head>
 
   <header>
@@ -15,23 +16,23 @@
     <div>
       <section class="cart-items">
         <% for(let items of order) { %>
-          <ol>
-            <li><%= items.name %></li>
-            <li>$<%= (items.cost * items.quantity) / 100%> </li>
-            <li><%= items.quantity %></li>
+          <ul class="cart">
             <li><img src="<%= items.picture_url %>" ></li>
-            <button class="removeFromCart" type="submit" value="<%= items.id %>"> remove item</button>
-          </ol>
+            <li><%= items.name %></li>
+            <li>x<%= items.quantity %></li>
+            <li>$<%= (items.cost * items.quantity) / 100%> </li>
+            <button class="btn" type="submit" value="<%= items.id %>"> Remove Item</button>
+          </ul>
         <% } %>
       </section>
     </div>
-    <div>
+    <div class="total-order">
       <p>Estimated wait time: <%= timeToMake %> minutes</p>
       <p>TOTAL: $<%= totalCost %> </p>
     </div>
     <div>
       <form method="POST" action='/orders'>
-        <button id="placeOrder" type="submit" class="btn btn-info"> Place Order </button>
+        <button id="placeOrder" type="submit" class="btn btn-info"> PLACE ORDER </button>
       </form>
     </div>
 

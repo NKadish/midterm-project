@@ -1,0 +1,58 @@
+*, *:before, *:after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  display:flex;
+  justify-content: center;
+}
+
+.cart {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-left: 0.5em;
+  border-bottom: 2px solid;
+  list-style-type: none;
+  font-family: Tahoma;
+  font-size: 1.3em;
+  button{
+    background-color: #c7ebff;
+    color: black;
+    margin-top: 10px;
+    font-size: 1.1em;
+    :hover {
+      color: #c7ebff;
+      background-color: #FFFFFF;
+    }
+  }
+}
+
+img {
+  height: 15vw;
+  width: 15vw;
+  border-radius: 100%;
+}
+
+.total-order {
+  display:flex;
+  justify-content: space-around;
+  font-size: 1.5em;
+  font-weight: 600;
+}
+
+#placeOrder {
+  float: right;
+  margin-right: 13vw;
+  width: fit-content;
+  height: fit-content;
+  background-color:  #3995db;
+  font-size: 1.5em;
+
+  :hover {
+    color: #c7ebff;
+    background-color: #FFFFFF;
+  }
+}
