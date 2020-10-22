@@ -113,9 +113,12 @@ exports.updateUser = updateUser;
 // gets all of the orders placed by the logged in user
 const showAllOrders =  function(userId) {
   let allOrders = [];
-  const queryString = `SELECT *
+  const queryString = `SELECT orders.*, max(menu_items.time_to_make) AS makeTime
                        FROM orders
-                       WHERE user_id = $1;
+                       JOIN carts ON orders_id = orders.id
+                       JOIN menu_items ON carts.menu_id = menu_items.id
+                       WHERE user_id = $1
+                       GROUP BY orders.id;
                       `;
   const queryParams = [userId];
   return pool.query(queryString, queryParams)

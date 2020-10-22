@@ -18,7 +18,7 @@ module.exports = (db) => {
             let menuItems = (menuItemsArr(menu))
             let orderTotals = (orderTotal(menu))
             let timeToMake = (getTimeForOrder(menu))
-
+            console.log(orders);
             const templateVars = {
               user: req.session.id,
               orders,
