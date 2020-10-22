@@ -3,6 +3,10 @@ const { showAllOrders, getUserFromCookie, showItemsFromOrders, updateOrderOnChec
 const router  = express.Router();
 const { sendText } = require('../api/twilio');
 
+// Twilio trial version can only send texts to verified numbers, these are the numbers we have verified for testing purposes.
+const RESTAURANTNUM = 6139228549;
+
+
 module.exports = (db) => {
 
   /////////// GET request to Orders page
@@ -54,11 +58,10 @@ module.exports = (db) => {
         return showItemsFromOrders(orderId);
       })
       .then(menuItems => {
-        let restaurantNum = 6139228549;
         let menuItemString = menuItemsMessage(menuItems);
 
         // Text to Restaurant with order
-        sendText(menuItemString, `+1${restaurantNum}`, 0);
+        sendText(menuItemString, `+1${RESTAURANTNUM}`, 0);
         // console.log(menuItemString, `+1${restaurantNum}`);
         return longestMakeTimeFromOrder(orderId);
       })
