@@ -431,17 +431,3 @@ const showItemsInEachOrder = function(userId) {
     );
 };
 exports.showItemsInEachOrder = showItemsInEachOrder;
-
-const getTimeForOrder = function(order) {
-  let timeToMake = 0;
-  for (let item of order) {
-    let orderTime = item.time_to_make;
-    if (item.status === "placed") {
-      if (timeToMake < orderTime) {
-        timeToMake = orderTime;
-      }
-    }
-  }
-  return timeToMake;
-}
-exports.getTimeForOrder = getTimeForOrder;
