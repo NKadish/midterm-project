@@ -14,6 +14,7 @@
   <body>
     <h1>Checkout</h1>
       <section class="cart-items">
+        <!-- Displays list of items for checkout -->
         <% for(let items of order) { %>
           <ul class="cart">
             <li><img class="item-img" src="<%= items.picture_url %>" ></li>
@@ -24,11 +25,13 @@
           </ul>
         <% } %>
       </section>
+
     <section class="footer">
-    <div class="total-order">
-      <p>Estimated wait time: <%= timeToMake %> minutes</p>
-      <p>TOTAL: $<%= totalCost %> </p>
-    </div>
+      <div class="total-order">
+        <p>Estimated wait time: <%= timeToMake %> minutes</p>
+        <p>TOTAL: $<%= totalCost %> </p>
+      </div>
+    <!-- Will not allow you to place an order with no items in cart -->
     <div>
       <% if (order[0]) { %>
       <form method="POST" action='/orders'>
