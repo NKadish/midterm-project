@@ -41,7 +41,6 @@ app.use(express.static("public"));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
-const usersRoutes = require("./routes/users");
 const loginRoutes = require("./routes/login");
 const logoutRoutes = require("./routes/logout");
 const menuRoutes = require("./routes/menu");
@@ -52,11 +51,6 @@ const database = require('./server/database');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
-
-// /users/endpoint
-const usersRouter = express.Router();
-usersRoutes(usersRouter, database);
-app.use("/users", usersRoutes(db));
 
 // /login/endpoints
 const loginRouter = express.Router();
