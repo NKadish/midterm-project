@@ -19,7 +19,7 @@
           <li class="item-name"><b><%= items.name %></b></li>
           <li class="item-description"><%= items.description %></li>
           <div class="item-footer">
-          <li class="item-cost"><b>$<%= items.cost / 100%></b> </li>
+          <li class="item-cost"><b>$<%= (items.cost / 100).toFixed(2)%></b> </li>
           <form>
             <% if (user) { %>
             <input type="number" class="quantity" min="1" max="10" value="1">
