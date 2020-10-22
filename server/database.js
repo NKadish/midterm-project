@@ -8,19 +8,6 @@ const pool = new Pool({
   database: 'midterm'
 });
 
-// get all users
-const getAllUsers =  function() {
-  const queryString = `SELECT * FROM users;
-                      `;
-
-  return pool.query(queryString)
-    .then(result => {
-      return result.rows;
-      }
-    );
-};
-exports.getAllUsers = getAllUsers;
-
 // add a user to the database
 const register =  function(user) {
   const queryString = `INSERT INTO users(name, email, phone_number, password)
@@ -67,48 +54,6 @@ const getAllMenu =  function() {
     .then(result => result.rows);
 };
 exports.getAllMenu = getAllMenu;
-
-// update user to change their info in the db
-const updateUser =  function(userUpdate) {
-  let queryString = '';
-
-  const queryParams = [userUpdate.id, userUpdate.name, userUpdate.email, userUpdate.phone_number, userUpdate.password];
-
-  if (userUpdate.name) {
-    queryString += `UPDATE users
-                    SET name = $2
-                    WHERE id = $1;
-                   `;
-  };
-
-  if (userUpdate.email) {
-    queryString += `UPDATE users
-                    SET email = $3
-                    WHERE id = $1;
-                   `;
-  };
-
-  if (userUpdate.phone_number) {
-    queryString += `UPDATE users
-                    SET phone_number = $4
-                    WHERE id = $1;
-                   `;
-  };
-
-  if (userUpdate.password) {
-    queryString += `UPDATE users
-                    SET password = $5
-                    WHERE id = $1;
-                   `;
-  };
-
-  return pool.query(queryString, queryParams)
-    .then(result => {
-      return result.rows[0];
-      }
-    );
-};
-exports.updateUser = updateUser;
 
 // gets all of the orders placed by the logged in user
 const showAllOrders =  function(userId) {
@@ -366,6 +311,7 @@ const getPlacedOrderId =  function(userId) {
 };
 exports.getPlacedOrderId = getPlacedOrderId;
 
+// gets a string that shows the name of the item and the quantity
 const menuItemsMessage = function(arr) {
   let output = '';
   for (const item of arr) {
@@ -376,6 +322,7 @@ const menuItemsMessage = function(arr) {
 }
 exports.menuItemsMessage = menuItemsMessage;
 
+// puts all of the menu items into an array
 const menuItemsArr = function(orders) {
   let menuItems = {};
   let currOrderID = 0;
@@ -395,6 +342,7 @@ const menuItemsArr = function(orders) {
 }
 exports.menuItemsArr = menuItemsArr;
 
+// totals up the cost of an order
 const orderTotal = function(orders) {
   let total = {};
   let costOfOrder = 0;
@@ -414,6 +362,7 @@ const orderTotal = function(orders) {
 }
 exports.orderTotal = orderTotal;
 
+// Shows the items in each order by user_id, for use in the orders page
 const showItemsInEachOrder = function(userId) {
   const queryString = `SELECT menu_items.name, carts.quantity, orders.id, menu_items.cost, menu_items.time_to_make, orders.status
                        FROM orders
