@@ -9,7 +9,6 @@ h1 {
   justify-content: center;
 }
 
-
 .pending-orders {
   display:flex;
   flex-direction: column;
@@ -38,54 +37,52 @@ h1 {
   box-sizing: border-box;
   background: linear-gradient( white, #c7ebff);
   margin: 1em 0 1em 0;
-}
 
-.order-list {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  border: 1px solid lightblue;
-  margin-bottom: 0 !important;
-  flex: 60%;
+  .order-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid lightblue;
+    margin-bottom: 0 !important;
+    flex: 60%;
 
-  .item-list {
-    margin: 0.5em 0 0 0.8em;
-    text-align: left;
+    .item-list {
+      margin: 0.5em 0 0 0.8em;
+      text-align: left;
+    }
   }
 
+  .order-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 0 !important;
+    border: 1px solid lightblue;
+    flex: 60%;
+
+    .placed-on {
+      margin-top: 0.5em;
+    }
+
+    .timer {
+      margin-bottom: 0.3em;
+    }
+  }
 }
 
-.order-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin-bottom: 0 !important;
-  border: 1px solid lightblue;
-  flex: 60%;
+@media only screen and (max-width: 767px) {
+  .pending-orders {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  .each-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 1vw;
+    width:90%
+  }
 }
-
-.placed-on {
-  margin-top: 0.5em;
-}
-
-.timer {
-  margin-bottom: 0.3em;
-}
-
-
-// @media only screen and (max-width: 767px) {
-//   .pending-orders {
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     flex-wrap: wrap;
-//     width: 100%;
-//   }
-//   .each-item {
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     margin-top: 1vw;
-//     width:90%
-//   }
-// }
