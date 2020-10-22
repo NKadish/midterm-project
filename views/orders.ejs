@@ -18,10 +18,13 @@
 
           <% if (order.status === 'placed') { %>
             <div class="each-item">
-            <span><%= (Object.values(menuItems[order.id]))%><br />
-            <strong>Total:</strong> $<%= ((orderTotals[order.id]) / 100 )%><br/></span>
-            <span><strong>Order Placed on</strong> <%= order.placed_at.toLocaleString('en-US', {timeZone: 'Canada/Eastern'})%><br />
-            <strong>Ready in:</strong> countdown?<br /></span>
+            <p><% for(let item of (Object.values(menuItems[order.id]))) { %>
+              🍔<%- item %><br />
+            <%}%><br />
+            <strong>Total:</strong> $<%= ((orderTotals[order.id]) / 100 )%><br/></p>
+            <p><strong>Order Placed on</strong> <%= order.placed_at.toLocaleString('en-US', {timeZone: 'Canada/Eastern'})%><br />
+              <br />
+            <strong>Ready in:</strong> countdown?<br /></p>
           </div>
           <% } %>
         <% } %>
@@ -35,9 +38,12 @@
         <% for(let order of orders) { %>
           <% if (order.status === 'picked up') { %>
             <div class="each-item">
-              <p><%= (Object.values(menuItems[order.id]))%><br />
+              <p><% for(let item of (Object.values(menuItems[order.id]))) { %>
+                &#127860;<%- item %><br />
+                <%}%><br />
               <strong>Total:</strong> $<%= ((orderTotals[order.id]) / 100 )%><br/></p>
               <p><strong>Order Placed on</strong> <%= order.placed_at.toLocaleString('en-US', {timeZone: 'Canada/Eastern'})%><br />
+                <br />
               <strong>Completed on:</strong> <%=order.picked_up_at.toLocaleString('en-US', {timeZone: 'Canada/Eastern'})%><br /></p>
 
             <% } %>

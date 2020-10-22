@@ -31,3 +31,23 @@ h1 {
   background: linear-gradient( white, #c7ebff);
   margin:auto;
 }
+
+
+
+
+@media only screen and (max-width: 767px) {
+  .pending-orders {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  .each-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 1vw;
+    width:90%
+  }
+}

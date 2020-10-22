@@ -54,3 +54,10 @@ h1 {
   margin: 0.5em 0 0 0;
 }
 
+@media only screen and (max-width: 767px) {
+  .image{
+    height: 40vw;
+    width: 40vw;
+  }
+
+}
