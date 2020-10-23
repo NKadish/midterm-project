@@ -19,7 +19,7 @@
             <div class="each-item">
             <div class="order-list">
             <p class="item-list"><% for(let item of (Object.values(menuItems[order.id]))) { %>
-              🍔<%- item %><br />
+              🍔<strong><%- item[0] %></strong> <%=item[1] %><br />
             <%}%><br /></p>
             <p class="total"><strong>Total:</strong> $<%= ((orderTotals[order.id]) / 100 )%><br/></p>
             </div>
@@ -42,7 +42,7 @@
             <div class="each-item">
               <div class="order-list">
               <p class="item-list"><% for(let item of (Object.values(menuItems[order.id]))) { %>
-                &#127860;<%- item %><br />
+                &#127860;<strong><%- item[0] %></strong> <%=item[1] %><br />
                 <%}%><br /></p>
               <p class="total"><strong>Total:</strong> $<%= ((orderTotals[order.id]) / 100 )%><br/></p>
               </div>

@@ -328,12 +328,12 @@ const menuItemsArr = function(orders) {
   let currOrderID = 0;
   for (let order of orders) {
     if (currOrderID === order.id) {
-      menuItems[currOrderID].push([`${order.name} Quantity:${order.quantity}`]);
+      menuItems[currOrderID].push([order.name, `Quantity:${order.quantity}`]);
       // menuItems[currOrderID].push(`Quantity:${order.quantity}`);
 
     } else {
       currOrderID = order.id;
-      menuItems[currOrderID] = [[`${order.name} Quantity:${order.quantity}`]];
+      menuItems[currOrderID] = [[order.name, `Quantity:${order.quantity}`]];
     }
 
   }
