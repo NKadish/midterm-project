@@ -11,9 +11,9 @@ IMPORTANT TO NOTE: this app will not really work on other computers due to not h
 
 ## Final Product
 
-!["Menu Page"]()
-!["Orders Page"]()
-!["Checkout Page"]()
+!["Menu Page"](https://github.com/NKadish/midterm-project/blob/master/docs/menu.png?raw=true)
+!["Orders Page"](https://github.com/NKadish/midterm-project/blob/master/docs/orders.png?raw=true)
+!["Checkout Page"](https://github.com/NKadish/midterm-project/blob/master/docs/checkout.png?raw=true)
 
 ## Dependencies
 
