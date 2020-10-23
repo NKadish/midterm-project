@@ -3,7 +3,6 @@ $(document).ready(function() {
   $('.removeFromCart').click(function(event) {
     event.preventDefault();
     let $cartId = $(this).val();
-    console.log($cartId);
     $.ajax({
       url: '/checkout',
       method: 'POST',
