@@ -1,5 +1,4 @@
 $(document).ready(function() {
-  console.log('helloworld')
   $('.removeFromCart').click(function(event) {
     event.preventDefault();
     let $cartId = $(this).val();
