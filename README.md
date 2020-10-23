@@ -1,6 +1,3 @@
-LHL Node Skeleton
-=========
-
 # WcDonalds restaurant pickup app! 
 
 This app gives the user a way to order items from their favorite fast food chain, WcDonalds, to be picked up. 
