@@ -18,9 +18,13 @@
           <% if (order.status === 'placed') { %>
             <div class="each-item">
             <div class="order-list">
-            <p class="item-list"><% for(let item of (Object.values(menuItems[order.id]))) { %>
-              🍔<strong><%- item[0] %></strong> <%=item[1] %><br />
-            <%}%><br /></p>
+            <div class="item-list"><% for(let item of (Object.values(menuItems[order.id]))) { %>
+              <div class="item">
+                <p class="item-name">🍔<strong><%- item[0] %></strong></p>
+                <p class="quantity"><%=item[1] %></p>
+              </div>
+            <%}%><br />
+          </div>
             <p class="total"><strong>Total:</strong> $<%= ((orderTotals[order.id]) / 100 )%><br/></p>
             </div>
             <div class="order-info">
@@ -41,9 +45,13 @@
           <% if (order.status === 'picked up') { %>
             <div class="each-item">
               <div class="order-list">
-              <p class="item-list"><% for(let item of (Object.values(menuItems[order.id]))) { %>
-                &#127860;<strong><%- item[0] %></strong> <%=item[1] %><br />
-                <%}%><br /></p>
+              <div class="item-list"><% for(let item of (Object.values(menuItems[order.id]))) { %>
+                <div class="item">
+                <p class="item-name"> &#127860;<strong><%- item[0] %></strong></p>
+                <p class="quantity"><%=item[1] %></p>
+                </div>
+                <%}%><br />
+              </div>
               <p class="total"><strong>Total:</strong> $<%= ((orderTotals[order.id]) / 100 )%><br/></p>
               </div>
               <div class="order-info">
